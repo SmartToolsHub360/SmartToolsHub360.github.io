@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Calculator - SmartToolsHub360</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.age-box{
+max-width:700px;
+margin:40px auto;
+background:#fff;
+padding:30px;
+border-radius:20px;
+box-shadow:0 8px 20px rgba(0,0,0,.10);
+text-align:center;
+}
+
+.age-box h1{
+font-size:32px;
+margin-bottom:10px;
+color:#0d6efd;
+}
+
+.age-box p{
+color:#666;
+margin-bottom:25px;
+}
+
+.input-box{
+margin:20px 0;
+}
+
+.input-box input{
+width:100%;
+padding:15px;
+font-size:18px;
+border:2px solid #0d6efd;
+border-radius:12px;
+box-sizing:border-box;
+}
+
+.btn{
+margin-top:20px;
+width:100%;
+padding:15px;
+font-size:20px;
+font-weight:bold;
+background:#0d6efd;
+color:white;
+border:none;
+border-radius:12px;
+cursor:pointer;
+}
+
+.btn:hover{
+background:#0b5ed7;
+}
+
+.result{
+margin-top:30px;
+font-size:22px;
+font-weight:bold;
+color:#222;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+SmartToolsHub360
+</header>
+
+<div class="container">
+
+<div class="age-box">
+
+<h1>🎂 Age Calculator</h1>
+
+<p>Enter your Date of Birth to calculate your exact age.</p>
+
+<div class="input-box">
+<input type="date" id="dob">
+</div>
+
+<button class="btn">
+Calculate Age
+</button>
+
+<div class="result">
+Your age will appear here.
+</div>
+
+</div>
+
+</div>
+  
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+const button = document.querySelector(".btn");
+const result = document.querySelector(".result");
+const dob = document.getElementById("dob");
+
+button.onclick = function () {
+
+if (dob.value === "") {
+result.innerHTML = "⚠️ Please select your Date of Birth.";
+return;
+}
+
+const birthDate = new Date(dob.value);
+const today = new Date();
+
+let years = today.getFullYear() - birthDate.getFullYear();
+let months = today.getMonth() - birthDate.getMonth();
+let days = today.getDate() - birthDate.getDate();
+
+if (days < 0) {
+months--;
+days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+}
+
+if (months < 0) {
+years--;
+months += 12;
+}
+
+result.innerHTML =
+`🎉 You are <br><br>
+<b>${years}</b> Years
+<b>${months}</b> Months
+<b>${days}</b> Days Old`;
+
+};
+
+});
+</script>
+  
+</body>
+</html>
