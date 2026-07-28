@@ -84,7 +84,31 @@ SmartToolsHub360
 <p>Enter your Date of Birth to calculate your exact age.</p>
 
 <div class="input-box">
-<input type="date" id="dob">
+
+<select id="day">
+<option value="">Day</option>
+</select>
+
+<select id="month">
+<option value="">Month</option>
+<option value="1">January</option>
+<option value="2">February</option>
+<option value="3">March</option>
+<option value="4">April</option>
+<option value="5">May</option>
+<option value="6">June</option>
+<option value="7">July</option>
+<option value="8">August</option>
+<option value="9">September</option>
+<option value="10">October</option>
+<option value="11">November</option>
+<option value="12">December</option>
+</select>
+
+<select id="year">
+<option value="">Year</option>
+</select>
+
 </div>
 
 <button class="btn">
@@ -98,81 +122,65 @@ Your age will appear here.
 </div>
 
 </div>
-  
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-const button = document.querySelector(".btn");
-const result = document.querySelector(".result");
-const dob = document.getElementById("dob");
-
-button.onclick = function () {
-
-if (dob.value === "") {
-result.innerHTML = "⚠️ Please select your Date of Birth.";
-return;
-}
-
-const birthDate = new Date(dob.value);
-const today = new Date();
-
-let years = today.getFullYear() - birthDate.getFullYear();
-let months = today.getMonth() - birthDate.getMonth();
-let days = today.getDate() - birthDate.getDate();
-
-if (days < 0) {
-months--;
-days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-}
-
-if (months < 0) {
-years--;
-months += 12;
-}
-
-result.innerHTML =
-`🎉 You are <br><br>
-<b>${years}</b> Years
-<b>${months}</b> Months
-<b>${days}</b> Days Old`;
-
-};
-
-});
-</script>
 
   <script>
-const button = document.querySelector(".btn");
+document.addEventListener("DOMContentLoaded", function () {
 
-button.addEventListener("click", function () {
-  const dob = document.getElementById("dob").value;
+  const day = document.getElementById("day");
+  const month = document.getElementById("month");
+  const year = document.getElementById("year");
+  const button = document.querySelector(".btn");
   const result = document.querySelector(".result");
 
-  if (dob === "") {
-    result.innerHTML = "⚠️ Please select your Date of Birth.";
-    return;
+  // Day dropdown fill
+  for (let i = 1; i <= 31; i++) {
+    let option = document.createElement("option");
+    option.value = i;
+    option.text = i;
+    day.appendChild(option);
   }
 
-  const birthDate = new Date(dob);
-  const today = new Date();
-
-  let years = today.getFullYear() - birthDate.getFullYear();
-  let months = today.getMonth() - birthDate.getMonth();
-  let days = today.getDate() - birthDate.getDate();
-
-  if (days < 0) {
-    months--;
-    const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
-    days += lastMonth.getDate();
+  // Year dropdown fill
+  const currentYear = new Date().getFullYear();
+  for (let i = currentYear; i >= 1900; i--) {
+    let option = document.createElement("option");
+    option.value = i;
+    option.text = i;
+    year.appendChild(option);
   }
 
-  if (months < 0) {
-    years--;
-    months += 12;
-  }
+  button.addEventListener("click", function () {
 
-  result.innerHTML =
-    `🎉 Your Age is <b>${years}</b> Years, <b>${months}</b> Months and <b>${days}</b> Days.`;
+    if (day.value === "" || month.value === "" || year.value === "") {
+      result.innerHTML = "⚠️ Please select Day, Month and Year.";
+      return;
+    }
+
+    const birthDate = new Date(year.value, month.value - 1, day.value);
+    const today = new Date();
+
+    let years = today.getFullYear() - birthDate.getFullYear();
+    let months = today.getMonth() - birthDate.getMonth();
+    let days = today.getDate() - birthDate.getDate();
+
+    if (days < 0) {
+      months--;
+      const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+      days += lastMonth.getDate();
+    }
+
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+
+    result.innerHTML =
+      `🎉 Your Age is <br><br>
+      <b>${years}</b> Years,
+      <b>${months}</b> Months,
+      <b>${days}</b> Days`;
+  });
+
 });
   </script>
   
