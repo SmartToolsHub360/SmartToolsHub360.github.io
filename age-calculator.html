@@ -174,12 +174,25 @@ document.addEventListener("DOMContentLoaded", function () {
       months += 12;
     }
 
-    result.innerHTML =
-      `🎉 Your Age is <br><br>
-      <b>${years}</b> Years,
-      <b>${months}</b> Months,
-      <b>${days}</b> Days`;
-  });
+    result.innerHTML = `
+🎉 Your Age is <br><br>
+<b>${years}</b> Years,
+<b>${months}</b> Months,
+<b>${days}</b> Days
+<br><br>
+🎂 Next Birthday: <span id="countdown"></span>
+`;
+
+let nextBirthday = new Date(today.getFullYear(), month.value - 1, day.value);
+
+if (nextBirthday < today) {
+  nextBirthday.setFullYear(today.getFullYear() + 1);
+}
+
+const diff = nextBirthday - today;
+const daysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+document.getElementById("countdown").innerHTML = `${daysLeft} Days Left`;
 
 });
   </script>
