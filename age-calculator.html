@@ -85,8 +85,8 @@ SmartToolsHub360
 
 <div class="input-box">
 
-<select id="day">
-<option value="">Day</option>
+<select id="date">
+<option value="">Date</option>
 </select>
 
 <select id="month">
@@ -126,7 +126,7 @@ Your age will appear here.
   <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  const day = document.getElementById("day");
+  const date = document.getElementById("date");
   const month = document.getElementById("month");
   const year = document.getElementById("year");
   const button = document.querySelector(".btn");
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let option = document.createElement("option");
     option.value = i;
     option.text = i;
-    day.appendChild(option);
+    date.appendChild(option);
   }
 
   // Year dropdown fill
@@ -151,12 +151,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   button.addEventListener("click", function () {
 
-    if (day.value === "" || month.value === "" || year.value === "") {
+    if (date.value === "" || month.value === "" || year.value === "") {
       result.innerHTML = "⚠️ Please select Day, Month and Year.";
       return;
     }
 
-    const birthDate = new Date(year.value, month.value - 1, day.value);
+    const birthDate = new Date(year.value, month.value - 1, date.value);
     const today = new Date();
 
     let years = today.getFullYear() - birthDate.getFullYear();
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
 🎂 Next Birthday: <span id="countdown"></span>
 `;
 
-let nextBirthday = new Date(today.getFullYear(), month.value - 1, day.value);
+let nextBirthday = new Date(today.getFullYear(), month.value - 1, date.value);
 
 if (nextBirthday < today) {
   nextBirthday.setFullYear(today.getFullYear() + 1);
