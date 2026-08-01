@@ -176,13 +176,59 @@ document.addEventListener("DOMContentLoaded", function () {
       months += 12;
     }
 
-    result.innerHTML = `
-🎉 Your Age is <br><br>
-<b>${years}</b> Years,
-<b>${months}</b> Months,
-<b>${days}</b> Days
-<br><br>
-🎂 Next Birthday: <span id="countdown"></span>
+  // Total days
+const totalDays = Math.floor((today - birthDate) / (1000 * 60 * 60 * 24));
+
+// Total weeks
+const totalWeeks = Math.floor(totalDays / 7);
+
+// Total hours
+const totalHours = totalDays * 24;
+
+// Next Birthday
+let nextBirthday = new Date(today.getFullYear(), month.value - 1, date.value);
+
+if (nextBirthday < today) {
+  nextBirthday.setFullYear(today.getFullYear() + 1);
+}
+
+const diff = nextBirthday - today;
+const daysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+const monthsLeft = Math.floor(daysLeft / 30);
+const remainingDays = daysLeft % 30;
+
+result.innerHTML = `
+<div style="background:#eef5ff;border-left:6px solid #0d6efd;border-radius:15px;padding:20px;margin-top:25px;">
+
+<h2 style="margin:0;color:#0d6efd;">🎉 Your Age</h2>
+
+<hr style="margin:15px 0;">
+
+<p style="font-size:22px;font-weight:bold;">
+${years} Years, ${months} Months, ${days} Days
+</p>
+
+<hr style="margin:15px 0;">
+
+<p><b>📅 Total Weeks:</b> ${totalWeeks}</p>
+
+<p><b>⏰ Total Hours:</b> ${totalHours.toLocaleString()}</p>
+
+<hr style="margin:15px 0;">
+
+<h3 style="color:#0d6efd;">🎂 Next Birthday</h3>
+
+<p>
+<b>${monthsLeft}</b> Months
+<b>${remainingDays}</b> Days Left
+</p>
+
+<p>
+📅 ${nextBirthday.toDateString()}
+</p>
+
+</div>
 `;
 
 let nextBirthday = new Date(today.getFullYear(), month.value - 1, date.value);
