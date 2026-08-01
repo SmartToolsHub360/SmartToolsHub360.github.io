@@ -33,13 +33,15 @@ margin-bottom:25px;
 margin:20px 0;
 }
 
-.input-box input{
+.input-box select{
 width:100%;
 padding:15px;
 font-size:18px;
 border:2px solid #0d6efd;
 border-radius:12px;
 box-sizing:border-box;
+margin-bottom:20px;
+background:#fff;
 }
 
 .btn{
@@ -193,6 +195,8 @@ const diff = nextBirthday - today;
 const daysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
 
 document.getElementById("countdown").innerHTML = `${daysLeft} Days Left`;
+    
+});    
 
 });
   </script>
