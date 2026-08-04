@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Percentage Calculator - SmartToolsHub360</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#f4f8ff;
+color:#222;
+}
+
+.container{
+max-width:900px;
+margin:40px auto;
+padding:20px;
+}
+
+.main-card{
+background:#fff;
+border-radius:20px;
+padding:30px;
+box-shadow:0 8px 20px rgba(0,0,0,.10);
+}
+
+.main-card h1{
+text-align:center;
+color:#0d6efd;
+font-size:34px;
+margin-bottom:10px;
+}
+
+.main-card p{
+text-align:center;
+color:#666;
+margin-bottom:30px;
+}
+
+.section{
+background:#f8fbff;
+border:2px solid #dbe9ff;
+border-radius:16px;
+padding:20px;
+margin-bottom:20px;
+}
+
+  .section h2{
+color:#0d6efd;
+font-size:22px;
+margin-bottom:15px;
+}
+
+.input-group{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+margin-bottom:15px;
+}
+
+.input-group input{
+width:100%;
+padding:14px;
+font-size:17px;
+border:2px solid #0d6efd;
+border-radius:12px;
+outline:none;
+transition:.3s;
+}
+
+.input-group input:focus{
+border-color:#084298;
+box-shadow:0 0 8px rgba(13,110,253,.25);
+}
+
+.btn{
+width:100%;
+padding:15px;
+background:#0d6efd;
+color:#fff;
+font-size:18px;
+font-weight:bold;
+border:none;
+border-radius:12px;
+cursor:pointer;
+transition:.3s;
+}
+
+.btn:hover{
+background:#0b5ed7;
+}
+
+.result{
+margin-top:18px;
+padding:15px;
+background:#eef5ff;
+border-left:5px solid #0d6efd;
+border-radius:10px;
+font-size:18px;
+font-weight:bold;
+display:none;
+}
+
+@media (max-width:768px){
+
+.container{
+padding:15px;
+margin:20px auto;
+}
+
+.main-card{
+padding:20px;
+}
+
+.main-card h1{
+font-size:28px;
+}
+
+.input-group{
+grid-template-columns:1fr;
+}
+
+.btn{
+font-size:17px;
+padding:14px;
+}
+
+.section{
+padding:18px;
+}
+
+}
+
+.copy-btn,
+.clear-btn{
+margin-top:10px;
+padding:12px 18px;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+.copy-btn{
+background:#198754;
+color:#fff;
+margin-right:10px;
+}
+
+.copy-btn:hover{
+background:#157347;
+}
+
+.clear-btn{
+background:#dc3545;
+color:#fff;
+}
+
+.clear-btn:hover{
+background:#bb2d3b;
+}
+
+.history-box{
+margin-top:20px;
+background:#fff;
+border:2px dashed #0d6efd;
+border-radius:15px;
+padding:15px;
+}
+
+.history-box h3{
+color:#0d6efd;
+margin-bottom:10px;
+}
+
+.history-box ul{
+list-style:none;
+padding:0;
+margin:0;
+}
+
+.history-box li{
+padding:10px;
+border-bottom:1px solid #e6e6e6;
+font-size:15px;
+}
+
+.history-box li:last-child{
+border-bottom:none;
+}
+
+.tip-box{
+margin-top:20px;
+padding:18px;
+background:#fff8e5;
+border-left:5px solid #ffc107;
+border-radius:12px;
+}
+
+.tip-box h3{
+color:#b8860b;
+margin-bottom:10px;
+}
+
+.tip-box p{
+font-size:15px;
+line-height:1.6;
+color:#444;
+text-align:left;
+margin:0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+SmartToolsHub360
+</header>
+
+<div class="container">
+
+<div class="main-card">
+
+<h1>📊 Percentage Calculator</h1>
+
+<p>Calculate percentages quickly with multiple professional tools.</p>
+
+<div class="section">
+
+<h2>1️⃣ What is X% of Y?</h2>
+
+<div class="input-group">
+<input type="number" id="percent1" placeholder="Percentage (%)">
+<input type="number" id="number1" placeholder="Number">
+</div>
+
+<button class="btn" onclick="calculatePercent1()">
+Calculate
+</button>
+
+<div class="result" id="result1"></div>
+
+</div>
+
+<div class="section">
+
+<h2>2️⃣ X is What % of Y?</h2>
+
+<div class="input-group">
+<input type="number" id="number2" placeholder="First Number">
+<input type="number" id="number3" placeholder="Second Number">
+</div>
+
+<button class="btn" onclick="calculatePercent2()">
+Calculate
+</button>
+
+<div class="result" id="result2"></div>
+
+</div>
+
+<div class="section">
+
+<h2>3️⃣ Percentage Increase / Decrease</h2>
+
+<div class="input-group">
+<input type="number" id="oldValue" placeholder="Original Value">
+<input type="number" id="newValue" placeholder="New Value">
+</div>
+
+<button class="btn" onclick="calculateChange()">
+Calculate Change
+</button>
+
+<div class="result" id="result3"></div>
+
+</div>
+
+<div class="section">
+
+<h2>4️⃣ Discount Calculator</h2>
+
+<div class="input-group">
+<input type="number" id="price" placeholder="Original Price">
+<input type="number" id="discount" placeholder="Discount (%)">
+</div>
+
+<button class="btn" onclick="calculateDiscount()">
+Calculate Discount
+</button>
+
+<div class="result" id="result4"></div>
+
+</div>
+
+<div class="section">
+
+<h2>5️⃣ Tip Calculator</h2>
+
+<div class="input-group">
+<input type="number" id="billAmount" placeholder="Bill Amount">
+<input type="number" id="tipPercent" placeholder="Tip (%)">
+</div>
+
+<button class="btn" onclick="calculateTip()">
+Calculate Tip
+</button>
+
+<div class="result" id="result5"></div>
+
+</div>
+
+<div class="section">
+
+<h2>6️⃣ Percentage Difference</h2>
+
+<div class="input-group">
+<input type="number" id="value1" placeholder="First Value">
+<input type="number" id="value2" placeholder="Second Value">
+</div>
+
+<button class="btn" onclick="calculateDifference()">
+Calculate Difference
+</button>
+
+<div class="result" id="result6"></div>
+
+</div>
+
+<div class="section">
+
+<h2>7️⃣ Original Number Finder</h2>
+
+<div class="input-group">
+<input type="number" id="finalValue" placeholder="Final Value">
+<input type="number" id="percentBack" placeholder="Percentage (%)">
+</div>
+
+<button class="btn" onclick="findOriginalValue()">
+Find Original Value
+</button>
+
+<div class="result" id="result7"></div>
+
+</div>
+
+<div class="history-box">
+
+<h3>📋 Recent Calculations</h3>
+
+<ul id="historyList">
+
+<li>No calculations yet.</li>
+
+</ul>
+
+</div>
+
+<div class="tip-box">
+
+<h3>💡 Quick Tips</h3>
+
+<p>
+Use the sections above to calculate percentages, discounts,
+tips, increases, decreases and original values instantly.
+</p>
+
+</div>
+
+<div style="margin-top:20px;text-align:center;">
+<button class="copy-btn" onclick="copyLastResult()">Copy Result</button>
+<button class="clear-btn" onclick="clearAll()">Clear All</button>
+</div>
+
+</div>
+
+<script>
+
+let history = [];
+let lastResult = "";
+
+function addHistory(text){
+history.unshift(text);
+
+if(history.length>10){
+history.pop();
+}
+
+const list=document.getElementById("historyList");
+
+list.innerHTML="";
+
+history.forEach(item=>{
+const li=document.createElement("li");
+li.textContent=item;
+list.appendChild(li);
+});
+}
+
+function showResult(id,text){
+
+const box=document.getElementById(id);
+
+box.style.display="block";
+
+box.innerHTML=text;
+
+lastResult=text.replace(/<[^>]*>/g,"");
+
+addHistory(lastResult);
+
+}
+
+function calculatePercent1(){
+
+const p=parseFloat(document.getElementById("percent1").value);
+
+const n=parseFloat(document.getElementById("number1").value);
+
+if(isNaN(p)||isNaN(n)){
+showResult("result1","⚠️ Enter valid values.");
+return;
+}
+
+const ans=(p*n)/100;
+
+showResult(
+"result1",
+`✅ ${p}% of ${n} = <b>${ans.toFixed(2)}</b>`
+);
+
+}
+
+function calculatePercent2(){
+
+const x=parseFloat(document.getElementById("number2").value);
+
+const y=parseFloat(document.getElementById("number3").value);
+
+if(isNaN(x)||isNaN(y)||y===0){
+showResult("result2","⚠️ Enter valid values.");
+return;
+}
+
+const percent=(x/y)*100;
+
+showResult(
+"result2",
+`✅ ${x} is <b>${percent.toFixed(2)}%</b> of ${y}`
+);
+
+}
+
+function calculateChange(){
+
+const oldValue=parseFloat(document.getElementById("oldValue").value);
+
+const newValue=parseFloat(document.getElementById("newValue").value);
+
+if(isNaN(oldValue)||isNaN(newValue)||oldValue===0){
+showResult("result3","⚠️ Enter valid values.");
+return;
+}
+
+const change=((newValue-oldValue)/oldValue)*100;
+
+const type=change>=0?"Increase":"Decrease";
+
+showResult(
+"result3",
+`📊 ${type}: <b>${Math.abs(change).toFixed(2)}%</b>`
+);
+
+}
+
+function calculateDiscount(){
+
+const price=parseFloat(document.getElementById("price").value);
+
+const discount=parseFloat(document.getElementById("discount").value);
+
+if(isNaN(price)||isNaN(discount)){
+showResult("result4","⚠️ Enter valid values.");
+return;
+}
+
+const save=(price*discount)/100;
+
+const finalPrice=price-save;
+
+showResult(
+"result4",
+`💰 You Save: <b>${save.toFixed(2)}</b><br>
+Final Price: <b>${finalPrice.toFixed(2)}</b>`
+);
+
+}
+
+function calculateTip(){
+
+const bill=parseFloat(document.getElementById("billAmount").value);
+
+const tip=parseFloat(document.getElementById("tipPercent").value);
+
+if(isNaN(bill)||isNaN(tip)){
+showResult("result5","⚠️ Enter valid values.");
+return;
+}
+
+const tipAmount=(bill*tip)/100;
+
+const total=bill+tipAmount;
+
+showResult(
+"result5",
+`💵 Tip: <b>${tipAmount.toFixed(2)}</b><br>
+Total Bill: <b>${total.toFixed(2)}</b>`
+);
+
+}
+
+function calculateDifference(){
+
+const a=parseFloat(document.getElementById("value1").value);
+
+const b=parseFloat(document.getElementById("value2").value);
+
+if(isNaN(a)||isNaN(b)){
+showResult("result6","⚠️ Enter valid values.");
+return;
+}
+
+const avg=(a+b)/2;
+
+const diff=(Math.abs(a-b)/avg)*100;
+
+showResult(
+"result6",
+`⚖️ Percentage Difference: <b>${diff.toFixed(2)}%</b>`
+);
+
+}
+
+function findOriginalValue(){
+
+const finalValue=parseFloat(document.getElementById("finalValue").value);
+
+const percent=parseFloat(document.getElementById("percentBack").value);
+
+if(isNaN(finalValue)||isNaN(percent)||percent>=100){
+showResult("result7","⚠️ Enter valid values.");
+return;
+}
+
+const original = finalValue / (1 - (percent / 100));
+
+showResult(
+"result7",
+`🔢 Original Value: <b>${original.toFixed(2)}</b>`
+);
+
+}
+
+function copyLastResult(){
+
+if(lastResult===""){
+alert("No result to copy.");
+return;
+}
+
+navigator.clipboard.writeText(lastResult);
+
+alert("✅ Result copied successfully.");
+
+}
+
+function clearAll(){
+
+document.querySelectorAll("input").forEach(input=>{
+input.value="";
+});
+
+document.querySelectorAll(".result").forEach(box=>{
+box.style.display="none";
+box.innerHTML="";
+});
+
+history=[];
+
+document.getElementById("historyList").innerHTML=
+"<li>No calculations yet.</li>";
+
+lastResult="";
+
+}
+
+</script>
+
+</body>
+</html>
+
