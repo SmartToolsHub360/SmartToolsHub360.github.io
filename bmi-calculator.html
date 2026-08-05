@@ -1,230 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free professional BMI Calculator to calculate Body Mass Index using Metric or Imperial units.">
+  <title>BMI Calculator - SmartToolsHub360</title>
 
-<title>BMI Calculator - SmartToolsHub360</title>
-<meta name="description" content="Free BMI Calculator to check your Body Mass Index, healthy weight range, and BMI category instantly.">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fc;
+      color: #222;
+      min-height: 100vh;
+    }
 
-body{
-    background:#f5f8ff;
-    padding:20px;
-}
+    .top-banner {
+      width: 100%;
+      background: #1677ed;
+      padding: 22px 15px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+    }
 
-.container{
-    max-width:700px;
-    margin:auto;
-    background:#fff;
-    border-radius:20px;
-    padding:30px;
-    box-shadow:0 8px 20px rgba(0,0,0,.1);
-}
+    .top-banner h1 {
+      color: white;
+      font-size: 30px;
+      font-weight: 700;
+    }
 
-h1{
-    text-align:center;
-    color:#0d6efd;
-    font-size:40px;
-    margin-bottom:10px;
-}
+    .container {
+      width: 92%;
+      max-width: 700px;
+      margin: 35px auto;
+    }
 
-.subtitle{
-    text-align:center;
-    color:#666;
-    margin-bottom:30px;
-}
+    .bmi-box {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.10);
+    }
 
-.input-group{
-    margin-bottom:20px;
-}
+    .bmi-heading {
+      text-align: center;
+      margin-bottom: 28px;
+    }
 
-label{
-    display:block;
-    font-weight:bold;
-    margin-bottom:8px;
-    color:#333;
-}
+        .bmi-heading h2 {
+      color: #1677ed;
+      font-size: 46px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
 
-select,
-input{
-    width:100%;
-    padding:14px;
-    border:2px solid #0d6efd;
-    border-radius:12px;
-    font-size:17px;
-    outline:none;
-}
+    .bmi-heading p {
+      color: #666;
+      font-size: 20px;
+      line-height: 1.6;
+    }
 
-.row{
-    display:flex;
-    gap:15px;
-}
+    .card {
+      background: #f8fbff;
+      border: 2px solid #d9e9ff;
+      border-radius: 18px;
+      padding: 25px;
+      margin-top: 25px;
+    }
 
-.row .col{
-    flex:1;
-}
+    .card h3 {
+      color: #1677ed;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
 
-button{
-    width:100%;
-    padding:15px;
-    background:#0d6efd;
-    color:#fff;
-    border:none;
-    border-radius:12px;
-    font-size:20px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.3s;
-}
+    label {
+      display: block;
+      margin-top: 18px;
+      margin-bottom: 8px;
+      font-size: 18px;
+      font-weight: bold;
+    }
 
-button:hover{
-    background:#0b5ed7;
-}
+    input,
+    select {
+      width: 100%;
+      height: 58px;
+      border: 3px solid #1677ed;
+      border-radius: 14px;
+      padding: 0 16px;
+      font-size: 18px;
+      outline: none;
+      background: #fff;
+    }
 
-.result-box{
-    margin-top:25px;
-    padding:20px;
-    border-radius:15px;
-    background:#f8f9ff;
-    border:2px solid #dbe7ff;
-    display:none;
-}
+    input:focus,
+    select:focus {
+      border-color: #0b5ed7;
+    }
 
-.result-box h2{
-    color:#0d6efd;
-    margin-bottom:10px;
-    text-align:center;
-}
+    .row {
+      display: flex;
+      gap: 15px;
+    }
 
-.bmi-value{
-    font-size:40px;
-    font-weight:bold;
-    text-align:center;
-    color:#222;
-    margin:10px 0;
-}
+    .col {
+      flex: 1;
+    }
 
-.bmi-category{
-    text-align:center;
-    font-size:22px;
-    font-weight:bold;
-    margin-bottom:15px;
-}
+        button {
+      width: 100%;
+      height: 60px;
+      margin-top: 28px;
+      border: none;
+      border-radius: 14px;
+      background: #1677ed;
+      color: #fff;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-.progress{
-    width:100%;
-    height:18px;
-    background:#e5e5e5;
-    border-radius:20px;
-    overflow:hidden;
-    margin:20px 0;
-}
+    button:hover {
+      background: #0b5ed7;
+    }
 
-.progress-bar{
-    width:0%;
-    height:100%;
-    background:#0d6efd;
-    transition:.5s;
-}
+    .result-card,
+    .tips-card,
+    .info-card,
+    .faq-card {
+      display: none;
+      background: #f8fbff;
+      border: 2px solid #d9e9ff;
+      border-radius: 18px;
+      padding: 25px;
+      margin-top: 25px;
+    }
 
-.info-box{
-    margin-top:20px;
-    padding:18px;
-    background:#eef6ff;
-    border-left:5px solid #0d6efd;
-    border-radius:12px;
-    line-height:1.7;
-    color:#333;
-}
+    .result-card h3,
+    .tips-card h3,
+    .info-card h3,
+    .faq-card h3 {
+      color: #1677ed;
+      margin-bottom: 18px;
+      font-size: 28px;
+    }
 
-.reset-btn{
-    margin-top:12px;
-    background:#dc3545;
-}
+    .bmi-value {
+      font-size: 48px;
+      color: #1677ed;
+      font-weight: bold;
+      text-align: center;
+      margin: 15px 0;
+    }
 
-.reset-btn:hover{
-    background:#bb2d3b;
-}
+    .status {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
 
-@media(max-width:768px){
+    .progress {
+      width: 100%;
+      height: 16px;
+      background: #ddd;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
 
-.row{
-    flex-direction:column;
-}
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: #1677ed;
+      transition: 0.5s;
+    }
 
-.container{
-    padding:20px;
-}
+        .details{
+      line-height:1.8;
+      font-size:17px;
+      color:#444;
+    }
 
-h1{
-    font-size:32px;
-}
+    .btn-group{
+      display:flex;
+      gap:15px;
+      margin-top:20px;
+    }
 
-button{
-    font-size:18px;
-}
+    .copy-btn,
+    .clear-btn{
+      flex:1;
+      height:55px;
+      border:none;
+      border-radius:12px;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:.3s;
+    }
 
-}
+    .copy-btn{
+      background:#198754;
+      color:#fff;
+    }
 
-</style>
+    .copy-btn:hover{
+      background:#157347;
+    }
+
+    .clear-btn{
+      background:#dc3545;
+      color:#fff;
+    }
+
+    .clear-btn:hover{
+      background:#bb2d3b;
+    }
+
+    ul{
+      padding-left:22px;
+    }
+
+    li{
+      margin-bottom:10px;
+      line-height:1.7;
+      color:#444;
+    }
+
+    @media(max-width:768px){
+
+      .row{
+        flex-direction:column;
+      }
+
+      .btn-group{
+        flex-direction:column;
+      }
+
+      .top-banner h1{
+        font-size:24px;
+      }
+
+      .bmi-heading h2{
+        font-size:34px;
+      }
+
+      .container{
+        width:95%;
+      }
+
+      .bmi-box{
+        padding:20px;
+      }
+    }
+
+  </style>
 
 </head>
 
 <body>
 
+<div class="top-banner">
+
+  <h1>⚖️ SmartToolsHub360</h1>
+</div>
+
 <div class="container">
 
-<h1>⚖️ BMI Calculator</h1>
+<div class="bmi-box">
 
-<p class="subtitle">
-Check your Body Mass Index instantly.
+<div class="bmi-heading">
+<h2>BMI Calculator</h2>
+<p>
+Calculate your Body Mass Index instantly and check
+whether your weight is underweight, normal,
+overweight or obese.
 </p>
+</div>
 
-<div class="input-group">
+<div class="card">
+
+<h3>📏 Enter Your Details</h3>
 
 <label for="unit">Select Unit</label>
 
 <select id="unit">
-
-<option value="metric">Metric (cm / kg)</option>
-
+<option value="metric">Metric (cm & kg)</option>
 <option value="imperial">Imperial (ft/in & lbs)</option>
-
 </select>
-
-</div>
 
 <div id="metricBox">
 
-<div class="input-group">
-
-<label for="height">Height (cm)</label>
+<label for="height">
+Height (cm)
+</label>
 
 <input
 type="number"
 id="height"
 placeholder="Enter your height">
 
-</div>
-
-<div class="input-group">
-
-<label for="weight">Weight (kg)</label>
+<label for="weight">
+Weight (kg)
+</label>
 
 <input
 type="number"
 id="weight"
 placeholder="Enter your weight">
-
-</div>
 
 </div>
 
@@ -234,7 +325,9 @@ placeholder="Enter your weight">
 
 <div class="col">
 
-<label for="feet">Height (Feet)</label>
+<label for="feet">
+Feet
+</label>
 
 <input
 type="number"
@@ -245,7 +338,9 @@ placeholder="Feet">
 
 <div class="col">
 
-<label for="inch">Height (Inches)</label>
+<label for="inch">
+Inches
+</label>
 
 <input
 type="number"
@@ -256,68 +351,159 @@ placeholder="Inches">
 
 </div>
 
-<div class="input-group">
-
-<label for="lbs">Weight (lbs)</label>
+<label for="lbs">
+Weight (lbs)
+</label>
 
 <input
 type="number"
 id="lbs"
-placeholder="Enter weight in lbs">
-
-</div>
-
-</div>
+placeholder="Enter weight in pounds">
 
 <button onclick="calculateBMI()">
-
 Calculate BMI
-
 </button>
 
-<div class="result-box" id="resultBox">
-
-<h2>Your BMI Result</h2>
-
-<div class="bmi-value" id="bmiValue">
-0.00
 </div>
 
-<div class="bmi-category" id="bmiCategory">
+</div>
+
+<div class="result-card" id="resultCard">
+
+<h3>📊 Your BMI Result</h3>
+
+<div class="bmi-value" id="bmiValue">
+0.0
+</div>
+
+<div class="status" id="bmiStatus">
 -
 </div>
 
 <div class="progress">
 
-<div class="progress-bar" id="progressBar"></div>
+<div class="progress-bar"
+id="progressBar"></div>
 
 </div>
 
-<div class="info-box">
+<div class="details">
 
-<p><strong>Healthy Weight Range:</strong>
-<span id="healthyWeight">--</span></p>
+<p>
+<b>Healthy Weight Range:</b>
+<span id="healthyWeight">--</span>
+</p>
 
-<p><strong>Ideal Weight:</strong>
-<span id="idealWeight">--</span></p>
+<p>
+<b>Ideal Weight:</b>
+<span id="idealWeight">--</span>
+</p>
 
-<p><strong>BMI Status:</strong>
-<span id="statusText">--</span></p>
+<p>
+<b>BMI Category:</b>
+<span id="categoryText">--</span>
+</p>
 
-<p><strong>Health Advice:</strong>
+<p>
+<b>Health Advice:</b>
 <span id="healthAdvice">
-Enter your height and weight to get your BMI.
-</span></p>
+Your personalized health advice will appear here.
+</span>
+</p>
 
 </div>
+
+<div class="btn-group">
 
 <button
-class="reset-btn"
-onclick="resetBMI()">
+class="copy-btn"
+onclick="copyResult()">
 
-Reset
+Copy Result
 
 </button>
+
+<button
+class="clear-btn"
+onclick="clearBMI()">
+
+Clear All
+
+</button>
+
+</div>
+
+</div>
+
+<div class="tips-card" id="tipsCard">
+
+<h3>💡 Quick Tips</h3>
+
+<ul>
+
+<li>Maintain a balanced diet every day.</li>
+
+<li>Exercise for at least 30 minutes daily.</li>
+
+<li>Drink enough water throughout the day.</li>
+
+<li>Sleep 7–9 hours every night.</li>
+
+<li>Check your BMI regularly to track progress.</li>
+
+</ul>
+
+</div>
+
+<div class="info-card" id="infoCard">
+
+<h3>📘 BMI Information</h3>
+
+<p class="details">
+BMI (Body Mass Index) is calculated using your
+height and weight. It helps estimate whether your
+weight falls within a healthy range.
+</p>
+
+</div>
+
+<div class="faq-card" id="faqCard">
+
+<h3>❓ Frequently Asked Questions</h3>
+
+<div class="details">
+
+<p>
+<b>Q. What is a healthy BMI?</b><br>
+A healthy BMI for most adults is between
+<b>18.5 and 24.9</b>.
+</p>
+
+<br>
+
+<p>
+<b>Q. Can BMI measure body fat?</b><br>
+No. BMI is only an estimate based on height and
+weight. It does not directly measure body fat.
+</p>
+
+<br>
+
+<p>
+<b>Q. Should athletes use BMI?</b><br>
+Athletes may have a high BMI because of muscle
+mass, so BMI may not always reflect their health.
+</p>
+
+<br>
+
+<p>
+<b>Q. How often should I check BMI?</b><br>
+Checking once every few weeks is usually enough
+to monitor progress.
+</p>
+
+</div>
 
 </div>
 
@@ -334,15 +520,22 @@ document.getElementById("metricBox");
 const imperialBox =
 document.getElementById("imperialBox");
 
+let lastResult = "";
+
 unit.addEventListener("change",function(){
 
 if(this.value==="metric"){
 
 metricBox.style.display="block";
+
 imperialBox.style.display="none";
+
 }else{
+
 metricBox.style.display="none";
+
 imperialBox.style.display="block";
+
 }
 
 });
@@ -350,35 +543,43 @@ imperialBox.style.display="block";
 function calculateBMI(){
 
 let height;
+
 let weight;
 
 if(unit.value==="metric"){
 
-height=parseFloat(
+height=
+parseFloat(
 document.getElementById("height").value
 )/100;
 
-weight=parseFloat(
+weight=
+parseFloat(
 document.getElementById("weight").value
 );
 
 }else{
 
-const feet=parseFloat(
+const feet=
+parseFloat(
 document.getElementById("feet").value
 );
 
-const inch=parseFloat(
+const inch=
+parseFloat(
 document.getElementById("inch").value
 );
 
-const lbs=parseFloat(
+const lbs=
+parseFloat(
 document.getElementById("lbs").value
 );
 
-height=((feet*12)+inch)*0.0254;
+height=
+((feet*12)+inch)*0.0254;
 
-weight=lbs*0.453592;
+weight=
+lbs*0.453592;
 
 }
 
@@ -388,13 +589,17 @@ if(
 height<=0||
 weight<=0
 ){
-alert("Please enter valid values.");
+alert("Please enter valid height and weight.");
 return;
 }
 
-const bmi=weight/(height*height);
+const bmi=
+weight/(height*height);
 
-document.getElementById("resultBox").style.display="block";
+document.getElementById("resultCard").style.display="block";
+document.getElementById("tipsCard").style.display="block";
+document.getElementById("infoCard").style.display="block";
+document.getElementById("faqCard").style.display="block";
 
 document.getElementById("bmiValue").innerHTML=
 bmi.toFixed(1);
@@ -406,33 +611,33 @@ let progress=0;
 if(bmi<18.5){
 
 category="Underweight";
-advice="You are below the healthy weight range. Try to eat a balanced diet and consult a healthcare professional if needed.";
+advice="Your weight is below the healthy range. Try to eat a balanced diet and consult a healthcare professional if needed.";
 progress=20;
 
 }else if(bmi<25){
 
 category="Normal Weight";
-advice="Excellent! Your BMI is in the healthy range. Keep maintaining a balanced diet and regular exercise.";
+advice="Great! Your BMI is in the healthy range. Maintain your healthy lifestyle.";
 progress=45;
 
 }else if(bmi<30){
 
 category="Overweight";
-advice="Your BMI is above the healthy range. Regular exercise and a healthy diet may help improve your BMI.";
+advice="Your BMI is above the healthy range. Regular exercise and a balanced diet can help.";
 progress=70;
 
 }else{
 
 category="Obese";
-advice="Your BMI is in the obesity range. Consider speaking with a healthcare professional for personalized advice.";
+advice="Your BMI is in the obesity range. It is recommended to consult a healthcare professional.";
 progress=100;
 
 }
 
-document.getElementById("bmiCategory").innerHTML=
+document.getElementById("bmiStatus").innerHTML=
 category;
 
-document.getElementById("statusText").innerHTML=
+document.getElementById("categoryText").innerHTML=
 category;
 
 document.getElementById("healthAdvice").innerHTML=
@@ -441,21 +646,42 @@ advice;
 document.getElementById("progressBar").style.width=
 progress+"%";
 
-const minWeight=(18.5*height*height).toFixed(1);
+const minWeight=
+(18.5*height*height).toFixed(1);
 
-const maxWeight=(24.9*height*height).toFixed(1);
+const maxWeight=
+(24.9*height*height).toFixed(1);
 
 document.getElementById("healthyWeight").innerHTML=
 `${minWeight} kg - ${maxWeight} kg`;
 
-const ideal=((22*height*height)).toFixed(1);
+const idealWeight=
+(22*height*height).toFixed(1);
 
 document.getElementById("idealWeight").innerHTML=
-`${ideal} kg`;
+`${idealWeight} kg`;
+
+lastResult=
+`BMI: ${bmi.toFixed(1)}
+Category: ${category}
+Healthy Weight: ${minWeight}-${maxWeight} kg`;
 
 }
 
-function resetBMI(){
+function copyResult(){
+
+if(lastResult===""){
+alert("Please calculate your BMI first.");
+return;
+}
+
+navigator.clipboard.writeText(lastResult);
+
+alert("✅ BMI Result Copied!");
+
+}
+
+function clearBMI(){
 
 document.getElementById("height").value="";
 document.getElementById("weight").value="";
@@ -463,19 +689,45 @@ document.getElementById("feet").value="";
 document.getElementById("inch").value="";
 document.getElementById("lbs").value="";
 
-document.getElementById("resultBox").style.display="none";
+document.getElementById("resultCard").style.display="none";
+document.getElementById("tipsCard").style.display="none";
+document.getElementById("infoCard").style.display="none";
+document.getElementById("faqCard").style.display="none";
+
+document.getElementById("bmiValue").innerHTML="0.0";
+document.getElementById("bmiStatus").innerHTML="-";
+document.getElementById("categoryText").innerHTML="-";
+document.getElementById("healthyWeight").innerHTML="--";
+document.getElementById("idealWeight").innerHTML="--";
+document.getElementById("healthAdvice").innerHTML=
+"Your personalized health advice will appear here.";
 
 document.getElementById("progressBar").style.width="0%";
 
-document.getElementById("bmiValue").innerHTML="0.00";
-document.getElementById("bmiCategory").innerHTML="-";
-document.getElementById("healthyWeight").innerHTML="--";
-document.getElementById("idealWeight").innerHTML="--";
-document.getElementById("statusText").innerHTML="--";
-document.getElementById("healthAdvice").innerHTML=
-"Enter your height and weight to get your BMI.";
+lastResult="";
 
 }
+
+document.querySelectorAll("input").forEach(input=>{
+
+input.addEventListener("keypress",function(e){
+
+if(e.key==="Enter"){
+
+calculateBMI();
+
+}
+
+});
+
+});
+
+window.onload=function(){
+
+metricBox.style.display="block";
+imperialBox.style.display="none";
+
+};
 
 </script>
 
