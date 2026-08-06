@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EMI Calculator - SmartToolsHub360</title>
+
+<meta name="description"
+content="Free EMI Calculator by SmartToolsHub360. Calculate Monthly EMI, Total Interest and Total Payment instantly.">
+
+<meta name="keywords"
+content="EMI Calculator, Loan EMI Calculator, Home Loan EMI, Car Loan EMI, SmartToolsHub360">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#eef5ff;
+color:#222;
+}
+
+header{
+background:#0d6efd;
+color:#fff;
+text-align:center;
+padding:18px;
+font-size:34px;
+font-weight:bold;
+box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.container{
+max-width:850px;
+margin:30px auto;
+background:#fff;
+border-radius:20px;
+padding:30px;
+box-shadow:0 8px 25px rgba(0,0,0,.12);
+}
+
+h1{
+text-align:center;
+color:#0d6efd;
+font-size:42px;
+margin-bottom:10px;
+}
+
+p{
+text-align:center;
+font-size:20px;
+color:#666;
+margin-bottom:30px;
+line-height:1.6;
+}
+
+.card{
+background:#f8fbff;
+border:2px solid #dbe8ff;
+border-radius:18px;
+padding:25px;
+margin-bottom:25px;
+}
+
+.card h2{
+color:#0d6efd;
+font-size:30px;
+margin-bottom:20px;
+}
+
+label{
+display:block;
+font-size:20px;
+font-weight:bold;
+margin:15px 0 8px;
+}
+
+input,
+select{
+width:100%;
+padding:16px;
+font-size:20px;
+border:2px solid #0d6efd;
+border-radius:14px;
+outline:none;
+margin-bottom:18px;
+}
+
+input:focus,
+select:focus{
+border-color:#0056d6;
+}
+
+.row{
+display:flex;
+gap:15px;
+}
+
+.col{
+flex:1;
+}
+
+.btn{
+width:100%;
+padding:16px;
+background:#0d6efd;
+color:#fff;
+border:none;
+border-radius:14px;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+margin-top:10px;
+}
+
+.btn:hover{
+background:#0b5ed7;
+}
+
+.result-card{
+background:#eef6ff;
+border-left:6px solid #0d6efd;
+border-radius:16px;
+padding:25px;
+margin-bottom:25px;
+}
+
+.result-card h2{
+color:#0d6efd;
+margin-bottom:18px;
+}
+
+.result-box{
+font-size:20px;
+line-height:2;
+color:#333;
+}
+
+.result-box span{
+float:right;
+font-weight:bold;
+color:#0d6efd;
+}
+
+.btn-group{
+display:flex;
+gap:15px;
+margin-top:20px;
+}
+
+.copy-btn,
+.clear-btn{
+flex:1;
+padding:15px;
+font-size:18px;
+font-weight:bold;
+border:none;
+border-radius:12px;
+cursor:pointer;
+transition:.3s;
+}
+
+.copy-btn{
+background:#198754;
+color:#fff;
+}
+
+.copy-btn:hover{
+background:#157347;
+}
+
+.clear-btn{
+background:#dc3545;
+color:#fff;
+}
+
+.clear-btn:hover{
+background:#bb2d3b;
+}
+
+.details{
+font-size:18px;
+line-height:1.8;
+color:#444;
+}
+
+ul{
+padding-left:22px;
+}
+
+li{
+font-size:17px;
+line-height:1.8;
+margin-bottom:10px;
+color:#444;
+}
+
+@media(max-width:768px){
+
+.row{
+flex-direction:column;
+}
+
+.btn-group{
+flex-direction:column;
+}
+
+header{
+font-size:26px;
+}
+
+h1{
+font-size:34px;
+}
+
+.card h2,
+.result-card h2{
+font-size:24px;
+}
+
+.container{
+margin:15px;
+padding:20px;
+}
+
+.btn,
+.copy-btn,
+.clear-btn{
+font-size:18px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+💰 SmartToolsHub360
+</header>
+
+<div class="container">
+
+<h1>EMI Calculator</h1>
+
+<p>
+Calculate your Monthly EMI, Total Interest and Total Payment instantly.
+Perfect for Home Loan, Car Loan and Personal Loan calculations.
+</p>
+
+<div class="card">
+
+<h2>📋 Loan Details</h2>
+
+<label for="loanAmount">
+Loan Amount (₹)
+</label>
+
+<input
+type="number"
+id="loanAmount"
+placeholder="Enter Loan Amount">
+
+<label for="interestRate">
+Annual Interest Rate (%)
+</label>
+
+<input
+type="number"
+id="interestRate"
+placeholder="Enter Interest Rate">
+
+<label for="loanTenure">
+Loan Tenure
+</label>
+
+<div class="row">
+
+<div class="col">
+
+<select id="tenureType">
+
+<option value="years">
+Years
+</option>
+
+<option value="months">
+Months
+</option>
+
+</select>
+
+</div>
+
+<div class="col">
+
+<input
+type="number"
+id="loanTenure"
+placeholder="Enter Tenure">
+
+</div>
+
+</div>
+
+<button
+class="btn"
+onclick="calculateEMI()">
+
+Calculate EMI
+
+</button>
+
+</div>
+
+<div class="result-card">
+
+<h2>📊 EMI Result</h2>
+
+<div class="result-box">
+
+<p>
+Monthly EMI
+<span id="monthlyEMI">
+₹0
+</span>
+</p>
+
+<p>
+Total Interest
+<span id="totalInterest">
+₹0
+</span>
+</p>
+
+<p>
+Total Payment
+<span id="totalPayment">
+₹0
+</span>
+</p>
+
+<p>
+Loan Amount
+<span id="loanResult">
+₹0
+</span>
+</p>
+
+</div>
+
+<div class="btn-group">
+
+<button
+class="copy-btn"
+onclick="copyResult()">
+
+Copy Result
+
+</button>
+
+<button
+class="clear-btn"
+onclick="clearAll()">
+
+Clear All
+
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>💡 Quick Tips</h2>
+
+<ul>
+
+<li>Choose the shortest affordable loan tenure to reduce total interest.</li>
+
+<li>Pay EMIs on time to maintain a good credit score.</li>
+
+<li>Compare interest rates before taking a loan.</li>
+
+<li>Make part-prepayments whenever possible to reduce interest.</li>
+
+<li>Use this EMI Calculator before applying for any loan.</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>ℹ️ EMI Information</h2>
+
+<p class="details">
+
+EMI (Equated Monthly Installment) is the fixed amount you pay every month to repay your loan.
+Each EMI includes both the principal amount and the interest charged by the lender.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>❓ Frequently Asked Questions</h2>
+
+<div class="details">
+
+<p>
+
+<b>1. What is EMI?</b><br>
+
+EMI stands for Equated Monthly Installment. It is the fixed monthly payment made towards your loan.
+
+</p>
+
+<br>
+
+<p>
+
+<b>2. What affects EMI?</b><br>
+
+Loan Amount, Interest Rate and Loan Tenure directly affect your monthly EMI.
+
+</p>
+
+<br>
+
+<p>
+
+<b>3. Can I reduce my EMI?</b><br>
+
+Yes. A lower interest rate or a longer tenure reduces your monthly EMI.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function calculateEMI(){
+
+let principal=
+parseFloat(document.getElementById("loanAmount").value);
+
+let rate=
+parseFloat(document.getElementById("interestRate").value);
+
+let tenure=
+parseFloat(document.getElementById("loanTenure").value);
+
+if(
+isNaN(principal)||
+isNaN(rate)||
+isNaN(tenure)||
+principal<=0||
+rate<=0||
+tenure<=0
+){
+
+alert("Please enter valid loan details.");
+
+return;
+
+}
+
+if(
+document.getElementById("tenureType").value==="years"
+){
+
+tenure=tenure*12;
+
+}
+
+let monthlyRate=rate/12/100;
+
+let emi=
+
+(principal*monthlyRate*Math.pow(1+monthlyRate,tenure))
+
+/
+
+(Math.pow(1+monthlyRate,tenure)-1);
+
+let totalPayment=emi*tenure;
+
+let totalInterest=totalPayment-principal;
+
+document.getElementById("monthlyEMI").innerHTML=
+"₹"+emi.toFixed(2);
+
+document.getElementById("totalInterest").innerHTML=
+"₹"+totalInterest.toFixed(2);
+
+document.getElementById("totalPayment").innerHTML=
+"₹"+totalPayment.toFixed(2);
+
+document.getElementById("loanResult").innerHTML=
+"₹"+principal.toFixed(2);
+
+window.emiResult=
+`Monthly EMI: ₹${emi.toFixed(2)}
+Total Interest: ₹${totalInterest.toFixed(2)}
+Total Payment: ₹${totalPayment.toFixed(2)}`;
+
+}
+
+function copyResult(){
+
+if(!window.emiResult){
+
+alert("Please calculate EMI first.");
+
+return;
+
+}
+
+navigator.clipboard.writeText(window.emiResult);
+
+alert("✅ EMI Result Copied!");
+
+}
+
+function clearAll(){
+
+document.getElementById("loanAmount").value="";
+document.getElementById("interestRate").value="";
+document.getElementById("loanTenure").value="";
+document.getElementById("tenureType").selectedIndex=0;
+
+document.getElementById("monthlyEMI").innerHTML="₹0";
+document.getElementById("totalInterest").innerHTML="₹0";
+document.getElementById("totalPayment").innerHTML="₹0";
+document.getElementById("loanResult").innerHTML="₹0";
+
+window.emiResult="";
+
+}
+
+document.querySelectorAll("input").forEach(input=>{
+
+input.addEventListener("keypress",function(e){
+
+if(e.key==="Enter"){
+
+calculateEMI();
+
+}
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>
