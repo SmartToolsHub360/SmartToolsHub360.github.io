@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GST Calculator - SmartToolsHub360</title>
+
+<meta name="description"
+content="Free GST Calculator by SmartToolsHub360. Calculate GST Amount, Final Price, Add GST and Remove GST instantly.">
+
+<meta name="keywords"
+content="GST Calculator, GST Tax Calculator, Add GST, Remove GST, SmartToolsHub360">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#eef5ff;
+color:#222;
+}
+
+header{
+background:#0d6efd;
+color:#fff;
+text-align:center;
+padding:18px;
+font-size:34px;
+font-weight:bold;
+box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.container{
+max-width:850px;
+margin:30px auto;
+background:#fff;
+border-radius:20px;
+padding:30px;
+box-shadow:0 8px 25px rgba(0,0,0,.12);
+}
+
+h1{
+text-align:center;
+color:#0d6efd;
+font-size:42px;
+margin-bottom:10px;
+}
+
+p{
+text-align:center;
+font-size:20px;
+color:#666;
+margin-bottom:30px;
+line-height:1.6;
+}
+
+.card{
+background:#f8fbff;
+border:2px solid #dbe8ff;
+border-radius:18px;
+padding:25px;
+margin-bottom:25px;
+}
+
+.card h2{
+color:#0d6efd;
+font-size:30px;
+margin-bottom:20px;
+}
+
+label{
+display:block;
+font-size:20px;
+font-weight:bold;
+margin:15px 0 8px;
+}
+
+input,
+select{
+width:100%;
+padding:16px;
+font-size:20px;
+border:2px solid #0d6efd;
+border-radius:14px;
+outline:none;
+margin-bottom:18px;
+}
+
+input:focus,
+select:focus{
+border-color:#0056d6;
+}
+
+.row{
+display:flex;
+gap:15px;
+}
+
+.col{
+flex:1;
+}
+
+.btn{
+width:100%;
+padding:16px;
+background:#0d6efd;
+color:#fff;
+border:none;
+border-radius:14px;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+margin-top:10px;
+}
+
+.btn:hover{
+background:#0b5ed7;
+}
+
+.result-card{
+background:#eef6ff;
+border-left:6px solid #0d6efd;
+border-radius:16px;
+padding:25px;
+margin-bottom:25px;
+}
+
+.result-card h2{
+color:#0d6efd;
+margin-bottom:18px;
+}
+
+.result-box{
+font-size:20px;
+line-height:2;
+color:#333;
+}
+
+.result-box span{
+float:right;
+font-weight:bold;
+color:#0d6efd;
+}
+
+.btn-group{
+display:flex;
+gap:15px;
+margin-top:20px;
+}
+
+.copy-btn,
+.clear-btn{
+flex:1;
+padding:15px;
+font-size:18px;
+font-weight:bold;
+border:none;
+border-radius:12px;
+cursor:pointer;
+transition:.3s;
+}
+
+.copy-btn{
+background:#198754;
+color:#fff;
+}
+
+.copy-btn:hover{
+background:#157347;
+}
+
+.clear-btn{
+background:#dc3545;
+color:#fff;
+}
+
+.clear-btn:hover{
+background:#bb2d3b;
+}
+
+.details{
+font-size:18px;
+line-height:1.8;
+color:#444;
+}
+
+ul{
+padding-left:22px;
+}
+
+li{
+font-size:17px;
+line-height:1.8;
+margin-bottom:10px;
+color:#444;
+}
+
+@media(max-width:768px){
+
+.row{
+flex-direction:column;
+}
+
+.btn-group{
+flex-direction:column;
+}
+
+header{
+font-size:26px;
+}
+
+h1{
+font-size:34px;
+}
+
+.card h2,
+.result-card h2{
+font-size:24px;
+}
+
+.container{
+margin:15px;
+padding:20px;
+}
+
+.btn,
+.copy-btn,
+.clear-btn{
+font-size:18px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+💰 SmartToolsHub360
+</header>
+
+<div class="container">
+
+<h1>GST Calculator</h1>
+
+<p>
+Calculate GST instantly by adding or removing GST from any amount.
+Fast, accurate and easy to use.
+</p>
+
+<div class="card">
+
+<h2>🧾 GST Details</h2>
+
+<label for="gstType">
+Calculation Type
+</label>
+
+<select id="gstType">
+
+<option value="add">
+Add GST
+</option>
+
+<option value="remove">
+Remove GST
+</option>
+
+</select>
+
+<label for="amount">
+Original Amount (₹)
+</label>
+
+<input
+type="number"
+id="amount"
+placeholder="Enter Amount">
+
+<label for="gstRate">
+GST Rate
+</label>
+
+<div class="row">
+
+<div class="col">
+
+<select id="gstRate">
+
+<option value="3">3%</option>
+
+<option value="5">5%</option>
+
+<option value="12">12%</option>
+
+<option value="18" selected>18%</option>
+
+<option value="28">28%</option>
+
+<option value="custom">Custom</option>
+
+</select>
+
+</div>
+
+<div class="col">
+
+<input
+type="number"
+id="customRate"
+placeholder="Custom GST %"
+style="display:none;">
+
+</div>
+
+</div>
+
+<button
+class="btn"
+onclick="calculateGST()">
+
+Calculate GST
+
+</button>
+
+</div>
+
+<div class="result-card">
+
+<h2>📊 GST Result</h2>
+
+<div class="result-box">
+
+<p>
+Original Amount
+<span id="originalAmount">
+₹0
+</span>
+</p>
+
+<p>
+GST Amount
+<span id="gstAmount">
+₹0
+</span>
+</p>
+
+<p>
+Final Amount
+<span id="finalAmount">
+₹0
+</span>
+</p>
+
+<p>
+GST Rate
+<span id="selectedRate">
+18%
+</span>
+</p>
+
+</div>
+
+<div class="btn-group">
+
+<button
+class="copy-btn"
+onclick="copyResult()">
+
+Copy Result
+
+</button>
+
+<button
+class="clear-btn"
+onclick="clearAll()">
+
+Clear All
+
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>💡 Quick Tips</h2>
+
+<ul>
+
+<li>Always verify the applicable GST rate before billing.</li>
+
+<li>Use <b>Add GST</b> when GST is not included in the price.</li>
+
+<li>Use <b>Remove GST</b> when GST is already included in the price.</li>
+
+<li>Keep invoices for future tax records.</li>
+
+<li>Double-check amounts before making payments.</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>ℹ️ GST Information</h2>
+
+<p class="details">
+
+GST (Goods and Services Tax) is an indirect tax applied to the supply of goods and services in India. This calculator helps you quickly add or remove GST from any amount.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>❓ Frequently Asked Questions</h2>
+
+<div class="details">
+
+<p>
+
+<b>1. What is GST?</b><br>
+
+GST (Goods and Services Tax) is an indirect tax charged on most goods and services in India.
+
+</p>
+
+<br>
+
+<p>
+
+<b>2. What is the difference between Add GST and Remove GST?</b><br>
+
+<b>Add GST</b> calculates the tax on an amount before GST.
+<b>Remove GST</b> extracts the GST from an amount that already includes GST.
+
+</p>
+
+<br>
+
+<p>
+
+<b>3. Which GST rates are commonly used?</b><br>
+
+The most common GST rates are 3%, 5%, 12%, 18% and 28%, depending on the product or service.
+
+</p>
+
+<br>
+
+<p>
+
+<b>4. Can I enter a custom GST rate?</b><br>
+
+Yes. Select <b>Custom</b> from the GST Rate dropdown and enter any GST percentage.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const gstRate=
+document.getElementById("gstRate");
+
+const customRate=
+document.getElementById("customRate");
+
+gstRate.addEventListener("change",function(){
+
+if(this.value==="custom"){
+
+customRate.style.display="block";
+
+}else{
+
+customRate.style.display="none";
+
+}
+
+});
+
+function calculateGST(){
+
+let amount=
+parseFloat(document.getElementById("amount").value);
+
+if(
+isNaN(amount)||
+amount<=0
+){
+
+alert("Please enter a valid amount.");
+
+return;
+
+}
+
+let rate;
+
+if(gstRate.value==="custom"){
+
+rate=
+parseFloat(customRate.value);
+
+if(
+isNaN(rate)||
+rate<=0
+){
+
+alert("Please enter a valid GST rate.");
+
+return;
+
+}
+
+}else{
+
+rate=
+parseFloat(gstRate.value);
+
+}
+
+let gstAmount;
+let finalAmount;
+let originalAmount;
+
+if(
+document.getElementById("gstType").value==="add"
+){
+
+gstAmount=
+amount*rate/100;
+
+finalAmount=
+amount+gstAmount;
+
+originalAmount=
+amount;
+
+}else{
+
+originalAmount=
+amount/(1+rate/100);
+
+gstAmount=
+amount-originalAmount;
+
+finalAmount=
+amount;
+
+}
+
+document.getElementById("originalAmount").innerHTML=
+"₹"+originalAmount.toFixed(2);
+
+document.getElementById("gstAmount").innerHTML=
+"₹"+gstAmount.toFixed(2);
+
+document.getElementById("finalAmount").innerHTML=
+"₹"+finalAmount.toFixed(2);
+
+document.getElementById("selectedRate").innerHTML=
+rate+"%";
+
+window.gstResult=
+`Original Amount: ₹${originalAmount.toFixed(2)}
+GST Amount: ₹${gstAmount.toFixed(2)}
+Final Amount: ₹${finalAmount.toFixed(2)}
+GST Rate: ${rate}%`;
+
+}
+
+function copyResult(){
+
+if(!window.gstResult){
+
+alert("Please calculate GST first.");
+
+return;
+
+}
+
+navigator.clipboard.writeText(window.gstResult);
+
+alert("✅ GST Result Copied!");
+
+}
+
+function clearAll(){
+
+document.getElementById("amount").value="";
+
+document.getElementById("gstRate").selectedIndex=3;
+
+document.getElementById("gstType").selectedIndex=0;
+
+document.getElementById("customRate").value="";
+
+document.getElementById("customRate").style.display="none";
+
+document.getElementById("originalAmount").innerHTML="₹0";
+
+document.getElementById("gstAmount").innerHTML="₹0";
+
+document.getElementById("finalAmount").innerHTML="₹0";
+
+document.getElementById("selectedRate").innerHTML="18%";
+
+window.gstResult="";
+
+}
+
+document.querySelectorAll("input").forEach(input=>{
+
+input.addEventListener("keypress",function(e){
+
+if(e.key==="Enter"){
+
+calculateGST();
+
+}
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>
