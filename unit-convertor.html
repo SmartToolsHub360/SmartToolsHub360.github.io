@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Unit Converter - SmartToolsHub360</title>
+
+<meta name="description"
+content="Free Professional Unit Converter by SmartToolsHub360. Convert Length, Weight, Temperature, Area, Volume, Speed, Time and Data Storage instantly.">
+
+<meta name="keywords"
+content="Unit Converter, Length Converter, Weight Converter, Temperature Converter, Area Converter, Volume Converter, SmartToolsHub360">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#eef5ff;
+color:#222;
+}
+
+header{
+background:#0d6efd;
+color:#fff;
+text-align:center;
+padding:18px;
+font-size:34px;
+font-weight:bold;
+box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.container{
+max-width:900px;
+margin:30px auto;
+background:#fff;
+padding:30px;
+border-radius:20px;
+box-shadow:0 8px 25px rgba(0,0,0,.12);
+}
+
+h1{
+text-align:center;
+color:#0d6efd;
+font-size:42px;
+margin-bottom:10px;
+}
+
+p{
+text-align:center;
+font-size:20px;
+color:#666;
+margin-bottom:30px;
+line-height:1.6;
+}
+
+.card{
+background:#f8fbff;
+border:2px solid #dbe8ff;
+border-radius:18px;
+padding:25px;
+margin-bottom:25px;
+}
+
+.card h2{
+color:#0d6efd;
+font-size:30px;
+margin-bottom:20px;
+}
+
+label{
+display:block;
+font-size:20px;
+font-weight:bold;
+margin:15px 0 8px;
+}
+
+input,
+select{
+width:100%;
+padding:16px;
+font-size:20px;
+border:2px solid #0d6efd;
+border-radius:14px;
+outline:none;
+margin-bottom:18px;
+transition:.3s;
+}
+
+input:focus,
+select:focus{
+border-color:#0056d6;
+box-shadow:0 0 10px rgba(13,110,253,.2);
+}
+
+.row{
+display:flex;
+gap:15px;
+align-items:center;
+}
+
+.col{
+flex:1;
+}
+
+.swap-btn{
+width:60px;
+height:60px;
+border:none;
+border-radius:50%;
+background:#0d6efd;
+color:#fff;
+font-size:28px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+.swap-btn:hover{
+background:#0b5ed7;
+transform:rotate(180deg);
+}
+
+.btn{
+width:100%;
+padding:16px;
+background:#0d6efd;
+color:#fff;
+border:none;
+border-radius:14px;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+margin-top:15px;
+}
+
+.btn:hover{
+background:#0b5ed7;
+}
+
+.result-card{
+background:#eef6ff;
+border-left:6px solid #0d6efd;
+border-radius:16px;
+padding:25px;
+margin-bottom:25px;
+}
+
+.result-card h2{
+color:#0d6efd;
+margin-bottom:18px;
+}
+
+.result-box{
+font-size:20px;
+line-height:2;
+color:#333;
+}
+
+.result-box span{
+float:right;
+font-weight:bold;
+color:#0d6efd;
+}
+
+.formula-box{
+margin-top:20px;
+padding:15px;
+background:#f8fbff;
+border:2px dashed #0d6efd;
+border-radius:12px;
+font-size:18px;
+font-weight:bold;
+color:#0d6efd;
+text-align:center;
+line-height:1.6;
+}
+
+.btn-group{
+display:flex;
+gap:15px;
+margin-top:20px;
+}
+
+.copy-btn,
+.clear-btn{
+flex:1;
+padding:15px;
+font-size:18px;
+font-weight:bold;
+border:none;
+border-radius:12px;
+cursor:pointer;
+transition:.3s;
+}
+
+.copy-btn{
+background:#198754;
+color:#fff;
+}
+
+.copy-btn:hover{
+background:#157347;
+}
+
+.clear-btn{
+background:#dc3545;
+color:#fff;
+}
+
+.clear-btn:hover{
+background:#bb2d3b;
+}
+
+.details{
+font-size:18px;
+line-height:1.8;
+color:#444;
+}
+
+ul{
+padding-left:22px;
+}
+
+li{
+font-size:17px;
+line-height:1.8;
+margin-bottom:10px;
+color:#444;
+}
+
+@media(max-width:768px){
+
+.row{
+flex-direction:column;
+}
+
+.btn-group{
+flex-direction:column;
+}
+
+.swap-btn{
+width:55px;
+height:55px;
+margin:10px auto;
+}
+
+header{
+font-size:26px;
+}
+
+h1{
+font-size:34px;
+}
+
+.card h2,
+.result-card h2{
+font-size:24px;
+}
+
+.container{
+margin:15px;
+padding:20px;
+}
+
+.btn,
+.copy-btn,
+.clear-btn{
+font-size:18px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+📏 SmartToolsHub360
+
+</header>
+
+<div class="container">
+
+<h1>Professional Unit Converter</h1>
+
+<p>
+
+Convert Length, Weight, Temperature, Area, Volume, Speed,
+Time and Data Storage units instantly with high accuracy.
+
+</p>
+
+<div class="card">
+
+<h2>🔄 Convert Units</h2>
+
+<label for="category">
+
+Conversion Category
+
+</label>
+
+<select id="category">
+
+<option value="length">📏 Length</option>
+
+<option value="weight">⚖️ Weight</option>
+
+<option value="temperature">🌡️ Temperature</option>
+
+<option value="area">⬜ Area</option>
+
+<option value="volume">🧪 Volume</option>
+
+<option value="speed">🚗 Speed</option>
+
+<option value="time">⏰ Time</option>
+
+<option value="data">💾 Data Storage</option>
+
+</select>
+
+@media(max-width:768px){
+
+.row{
+flex-direction:column;
+}
+
+.btn-group{
+flex-direction:column;
+}
+
+.swap-btn{
+width:55px;
+height:55px;
+margin:10px auto;
+}
+
+header{
+font-size:26px;
+}
+
+h1{
+font-size:34px;
+}
+
+.card h2,
+.result-card h2{
+font-size:24px;
+}
+
+.container{
+margin:15px;
+padding:20px;
+}
+
+.btn,
+.copy-btn,
+.clear-btn{
+font-size:18px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+📏 SmartToolsHub360
+</header>
+
+<div class="container">
+
+<h1>Unit Converter</h1>
+
+<p>
+Convert Length, Weight, Temperature, Area, Volume, Speed, Time and Data Storage units instantly with high accuracy.
+</p>
+
+<div class="card">
+
+<h2>🔄 Convert Units</h2>
+
+<label for="category">
+Conversion Category
+</label>
+
+<select id="category">
+
+<option value="length">Length</option>
+
+<option value="weight">Weight</option>
+
+<option value="temperature">Temperature</option>
+
+<option value="area">Area</option>
+
+<option value="volume">Volume</option>
+
+<option value="speed">Speed</option>
+
+<option value="time">Time</option>
+
+<option value="data">Data Storage</option>
+
+</select>
+
+<label for="inputValue">
+Enter Value
+</label>
+
+<input
+type="number"
+id="inputValue"
+placeholder="Enter value">
+
+<div class="row">
+
+<div class="col">
+
+<label for="fromUnit">
+From Unit
+</label>
+
+<select id="fromUnit">
+
+</select>
+
+</div>
+
+<div style="display:flex;align-items:center;justify-content:center;">
+
+<button
+type="button"
+class="swap-btn"
+onclick="swapUnits()">
+
+⇄
+
+</button>
+
+</div>
+
+<div class="col">
+
+<label for="toUnit">
+To Unit
+</label>
+
+<select id="toUnit">
+
+</select>
+
+</div>
+
+</div>
+
+<button
+class="btn"
+onclick="convertUnit()">
+
+Convert Now
+
+</button>
+
+</div>
+
+<div class="result-card">
+
+<h2>📊 Conversion Result</h2>
+
+<div class="result-box">
+
+<p>
+
+Input Value
+
+<span id="inputResult">
+
+0
+
+</span>
+
+</p>
+
+<p>
+
+Converted Value
+
+<span id="outputResult">
+
+0
+
+</span>
+
+</p>
+
+<p>
+
+Conversion Category
+
+<span id="categoryResult">
+
+Length
+
+</span>
+
+</p>
+
+<p>
+
+Formula
+
+<span id="formulaName">
+
+--
+
+</span>
+
+</p>
+
+</div>
+
+<div
+class="formula-box"
+id="formulaBox">
+
+Conversion formula will appear here.
+
+</div>
+
+<div class="btn-group">
+
+<button
+class="copy-btn"
+onclick="copyResult()">
+
+Copy Result
+
+</button>
+
+<button
+class="clear-btn"
+onclick="clearAll()">
+
+Clear All
+
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>💡 Quick Tips</h2>
+
+<ul>
+
+<li>Select the correct conversion category before entering a value.</li>
+
+<li>Use the ⇄ Swap button to exchange From and To units instantly.</li>
+
+<li>Always verify the selected units before converting.</li>
+
+<li>Temperature uses different formulas than other unit conversions.</li>
+
+<li>Use Copy Result to quickly save your converted value.</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>ℹ️ Unit Information</h2>
+
+<p class="details">
+
+This Professional Unit Converter supports Length, Weight,
+Temperature, Area, Volume, Speed, Time and Data Storage conversions.
+It uses standard international conversion factors to provide accurate
+results instantly.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>❓ Frequently Asked Questions</h2>
+
+<div class="details">
+
+<p>
+
+<b>1. Which units are supported?</b><br>
+
+Length, Weight, Temperature, Area, Volume,
+Speed, Time and Data Storage.
+
+</p>
+
+<br>
+
+<p>
+
+<b>2. Is this converter accurate?</b><br>
+
+Yes. It uses internationally accepted conversion values.
+
+</p>
+
+<br>
+
+<p>
+
+<b>3. Why is temperature converted differently?</b><br>
+
+Because Celsius, Fahrenheit and Kelvin require formulas instead of
+simple multiplication.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const units={
+
+length:[
+"Millimeter",
+"Centimeter",
+"Meter",
+"Kilometer",
+"Inch",
+"Foot",
+"Yard",
+"Mile"
+],
+
+weight:[
+"Milligram",
+"Gram",
+"Kilogram",
+"Ton",
+"Ounce",
+"Pound"
+],
+
+temperature:[
+"Celsius",
+"Fahrenheit",
+"Kelvin"
+],
+
+area:[
+"Square Meter",
+"Square Kilometer",
+"Square Foot",
+"Square Yard",
+"Acre",
+"Hectare"
+],
+
+volume:[
+"Milliliter",
+"Liter",
+"Cubic Meter",
+"Gallon"
+],
+
+speed:[
+"m/s",
+"km/h",
+"mph",
+"Knot"
+],
+
+time:[
+"Second",
+"Minute",
+"Hour",
+"Day",
+"Week",
+"Month",
+"Year"
+],
+
+data:[
+"Byte",
+"KB",
+"MB",
+"GB",
+"TB"
+]
+
+};
+
+const category=
+document.getElementById("category");
+
+const fromUnit=
+document.getElementById("fromUnit");
+
+const toUnit=
+document.getElementById("toUnit");
+
+category.addEventListener(
+"change",
+loadUnits
+);
+
+loadUnits();
+
+function loadUnits(){
+
+fromUnit.innerHTML="";
+toUnit.innerHTML="";
+
+units[
+category.value
+].forEach(unit=>{
+
+fromUnit.innerHTML+=
+`<option value="${unit}">${unit}</option>`;
+
+toUnit.innerHTML+=
+`<option value="${unit}">${unit}</option>`;
+
+});
+
+toUnit.selectedIndex=1;
+
+}
+
+function swapUnits(){
+
+let temp=
+fromUnit.selectedIndex;
+
+fromUnit.selectedIndex=
+toUnit.selectedIndex;
+
+toUnit.selectedIndex=
+temp;
+
+convertUnit();
+
+}
+
+function convertUnit(){
+
+let value=
+parseFloat(
+document.getElementById("inputValue").value
+);
+
+if(isNaN(value)){
+
+alert("Please enter a valid value.");
+
+return;
+
+}
+
+let from=
+fromUnit.value;
+
+let to=
+toUnit.value;
+
+let result=value;
+
+let formula="";
+
+switch(category.value){
+
+case "length":
+
+const lengthMap={
+
+Millimeter:0.001,
+Centimeter:0.01,
+Meter:1,
+Kilometer:1000,
+Inch:0.0254,
+Foot:0.3048,
+Yard:0.9144,
+Mile:1609.344
+
+};
+
+result=
+value*
+lengthMap[from]/
+lengthMap[to];
+
+formula=
+"Value × From Factor ÷ To Factor";
+
+break;
+
+case "weight":
+
+const weightMap={
+
+Milligram:0.000001,
+Gram:0.001,
+Kilogram:1,
+Ton:1000,
+Ounce:0.0283495,
+Pound:0.453592
+
+};
+
+result=
+value*
+weightMap[from]/
+weightMap[to];
+
+formula=
+"Value × From Factor ÷ To Factor";
+
+break;
+
+case "temperature":
+
+if(from==="Celsius" && to==="Fahrenheit")
+result=(value*9/5)+32;
+
+else if(from==="Fahrenheit" && to==="Celsius")
+result=(value-32)*5/9;
+
+else if(from==="Celsius" && to==="Kelvin")
+result=value+273.15;
+
+else if(from==="Kelvin" && to==="Celsius")
+result=value-273.15;
+
+else if(from==="Fahrenheit" && to==="Kelvin")
+result=((value-32)*5/9)+273.15;
+
+else if(from==="Kelvin" && to==="Fahrenheit")
+result=((value-273.15)*9/5)+32;
+
+formula="Standard Temperature Formula";
+
+break;
+
+case "area":
+
+const areaMap={
+
+"Square Meter":1,
+"Square Kilometer":1000000,
+"Square Foot":0.092903,
+"Square Yard":0.836127,
+"Acre":4046.856422,
+"Hectare":10000
+
+};
+
+result=
+value*
+areaMap[from]/
+areaMap[to];
+
+formula=
+"Value × From Factor ÷ To Factor";
+
+break;
+
+case "volume":
+
+const volumeMap={
+
+Milliliter:0.001,
+Liter:1,
+"Cubic Meter":1000,
+Gallon:3.78541
+
+};
+
+result=
+value*
+volumeMap[from]/
+volumeMap[to];
+
+formula=
+"Value × From Factor ÷ To Factor";
+
+break;
+
+case "speed":
+
+const speedMap={
+
+"m/s":1,
+"km/h":0.277777778,
+"mph":0.44704,
+"Knot":0.514444
+
+};
+
+result=
+value*
+speedMap[from]/
+speedMap[to];
+
+formula=
+"Value × From Factor ÷ To Factor";
+
+break;
+
+case "time":
+
+const timeMap={
+
+Second:1,
+Minute:60,
+Hour:3600,
+Day:86400,
+Week:604800,
+Month:2628000,
+Year:31536000
+
+};
+
+result=
+value*
+timeMap[from]/
+timeMap[to];
+
+formula=
+"Value × From Factor ÷ To Factor";
+
+break;
+
+case "data":
+
+const dataMap={
+
+Byte:1,
+KB:1024,
+MB:1048576,
+GB:1073741824,
+TB:1099511627776
+
+};
+
+result=
+value*
+dataMap[from]/
+dataMap[to];
+
+formula=
+"Value × From Factor ÷ To Factor";
+
+break;
+
+default:
+
+result=value;
+formula="Standard Conversion";
+
+}
+
+document.getElementById("inputResult").innerHTML=
+value+" "+from;
+
+document.getElementById("outputResult").innerHTML=
+result.toFixed(6)+" "+to;
+
+document.getElementById("categoryResult").innerHTML=
+category.options[
+category.selectedIndex
+].text;
+
+document.getElementById("formulaName").innerHTML=
+formula;
+
+document.getElementById("formulaBox").innerHTML=
+`${value} ${from} = ${result.toFixed(6)} ${to}`;
+
+window.unitResult=
+`Category: ${
+category.options[
+category.selectedIndex
+].text
+}
+Input: ${value} ${from}
+Output: ${result.toFixed(6)} ${to}
+Formula: ${formula}`;
+
+}
+
+function copyResult(){
+
+if(!window.unitResult){
+
+alert("Please convert a value first.");
+
+return;
+
+}
+
+navigator.clipboard.writeText(
+window.unitResult
+);
+
+alert("✅ Result Copied Successfully!");
+
+}
+
+function clearAll(){
+
+document.getElementById("inputValue").value="";
+
+document.getElementById("inputResult").innerHTML="0";
+
+document.getElementById("outputResult").innerHTML="0";
+
+document.getElementById("categoryResult").innerHTML=
+category.options[0].text;
+
+document.getElementById("formulaName").innerHTML="--";
+
+document.getElementById("formulaBox").innerHTML=
+"Conversion formula will appear here.";
+
+window.unitResult="";
+
+category.selectedIndex=0;
+
+loadUnits();
+
+}
+
+document
+.getElementById("inputValue")
+.addEventListener("keypress",function(e){
+
+if(e.key==="Enter"){
+
+convertUnit();
+
+}
+
+});
+
+window.onload=function(){
+
+loadUnits();
+
+window.unitResult="";
+
+};
+
+</script>
+
+</body>
+
+</html>
