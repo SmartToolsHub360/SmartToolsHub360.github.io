@@ -157,282 +157,166 @@ SmartToolsHub360
 <footer>
 © 2026 SmartToolsHub360 | All Rights Reserved
 </footer>
-
+  
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
     const searchBox = document.getElementById("search");
+    const cards = Array.from(document.querySelectorAll(".card"));
 
-const cards = Array.from(
-    document.querySelectorAll(".card")
-);
+    if (!searchBox || cards.length === 0) {
+        console.log("Search box or cards not found.");
+        return;
+    }
 
-const toolsContainer = cards.length
-    ? cards[0].parentElement
-    : null;
-    );
+    const parent = cards[0].parentElement;
+    const originalOrder = [...cards];
 
-    /* Original order save kar rahe hain */
-    const originalOrder = cards.slice();
-
-    /*
-      Common words / related words.
-      Inke through user alag-alag tarike se
-      same tool ko search kar sakta hai.
-    */
     const aliases = {
-
         "age calculator": [
-            "age",
-            "age calc",
-            "calculate age",
-            "dob",
-            "date of birth",
-            "birthday",
-            "birth date",
-            "how old",
-            "years old"
+            "age", "dob", "date of birth", "birthday",
+            "birth date", "how old", "age calc"
         ],
 
         "percentage calculator": [
-            "percentage",
-            "percent",
-            "%",
-            "percent calculator",
-            "percentage calc",
-            "percentage calculation",
-            "percent calculation",
-            "percentage finder",
-            "percent finder",
-            "increase percentage",
-            "decrease percentage",
-            "mercentage",
-            "percantage",
-            "percenatge"
+            "percentage", "percent", "%", "percent calc",
+            "percentage calc", "percentage calculation",
+            "percent calculation", "increase percentage",
+            "decrease percentage", "mercentage",
+            "percantage", "percenatge"
         ],
 
         "bmi calculator": [
-            "bmi",
-            "body mass",
-            "body mass index",
-            "weight",
-            "weight calculator",
-            "height weight",
-            "body weight",
-            "health calculator"
+            "bmi", "body mass", "body mass index",
+            "weight", "weight calculator", "body weight",
+            "height weight", "health calculator"
         ],
 
         "emi calculator": [
-            "emi",
-            "emi calc",
-            "loan",
-            "loan calculator",
-            "loan emi",
-            "monthly emi",
-            "monthly payment",
-            "installment",
-            "installment calculator",
-            "home loan",
-            "car loan",
-            "interest loan"
+            "emi", "loan", "loan calculator",
+            "loan emi", "monthly emi", "monthly payment",
+            "installment", "home loan", "car loan"
         ],
 
         "gst calculator": [
-            "gst",
-            "gst calc",
-            "tax",
-            "tax calculator",
-            "goods and services tax",
-            "gst tax",
-            "gst calculation",
-            "add gst",
-            "remove gst"
+            "gst", "tax", "tax calculator",
+            "goods and services tax", "gst tax",
+            "gst calculation", "sales tax"
         ],
 
         "unit converter": [
-            "unit",
-            "units",
-            "convert",
-            "converter",
-            "conversion",
-            "measurement",
-            "measure",
-            "length",
-            "weight conversion",
-            "temperature conversion",
-            "distance conversion",
-            "unit conversion"
+            "unit", "units", "convert", "converter",
+            "conversion", "measurement", "measure",
+            "length conversion", "weight conversion",
+            "temperature conversion", "distance conversion"
         ],
 
         "password generator": [
-            "password",
-            "password generator",
-            "generate password",
-            "strong password",
-            "secure password",
-            "random password",
-            "password maker",
-            "pass",
-            "pwd",
-            "passwrod",
-            "pasword",
-            "password gen"
+            "password", "password generator",
+            "generate password", "strong password",
+            "secure password", "random password",
+            "password maker", "pwd", "pass",
+            "passwrod", "pasword"
         ]
     };
 
-    function normalize(text) {
-
+    function clean(text) {
         return text
             .toLowerCase()
-            .replace(/[^a-z0-9%]+/g, " ")
+            .replace(/[^a-z0-9% ]/g, "")
             .replace(/\s+/g, " ")
             .trim();
-
     }
 
-    function compact(text) {
+    function distance(a, b) {
 
-        return normalize(text)
-            .replace(/\s/g, "");
+        const dp = [];
 
-    }
-
-    /*
-      Typo checking.
-      Example:
-      percentage → percantage
-      password → passwrod
-    */
-    function levenshtein(a, b) {
-
-        const matrix = [];
-
-        for (let i = 0; i <= b.length; i++) {
-            matrix[i] = [i];
+        for (let i = 0; i <= a.length; i++) {
+            dp[i] = [i];
         }
 
-        for (let j = 0; j <= a.length; j++) {
-            matrix[0][j] = j;
+        for (let j = 0; j <= b.length; j++) {
+            dp[0][j] = j;
         }
 
-        for (let i = 1; i <= b.length; i++) {
+        for (let i = 1; i <= a.length; i++) {
 
-            for (let j = 1; j <= a.length; j++) {
+            for (let j = 1; j <= b.length; j++) {
 
-                if (b.charAt(i - 1) === a.charAt(j - 1)) {
-
-                    matrix[i][j] =
-                        matrix[i - 1][j - 1];
-
+                if (a[i - 1] === b[j - 1]) {
+                    dp[i][j] = dp[i - 1][j - 1];
                 } else {
-
-                    matrix[i][j] = Math.min(
-
-                        matrix[i - 1][j] + 1,
-
-                        matrix[i][j - 1] + 1,
-
-                        matrix[i - 1][j - 1] + 1
-
+                    dp[i][j] = Math.min(
+                        dp[i - 1][j] + 1,
+                        dp[i][j - 1] + 1,
+                        dp[i - 1][j - 1] + 1
                     );
-
                 }
-
             }
-
         }
 
-        return matrix[b.length][a.length];
-
+        return dp[a.length][b.length];
     }
 
-    function getToolName(card) {
+    function getName(card) {
 
-        const heading = card.querySelector("h2");
+        const heading = card.querySelector("h2, h3");
 
         if (heading) {
-            return normalize(heading.textContent);
+            return clean(heading.textContent);
         }
 
-        return normalize(card.textContent);
-
+        return clean(card.textContent);
     }
 
-    function getAliases(toolName) {
+    function getMatchingAliases(name) {
 
         for (const key in aliases) {
 
             if (
-                toolName.includes(key) ||
-                key.includes(toolName)
+                name.includes(key) ||
+                key.includes(name)
             ) {
-
                 return aliases[key];
-
             }
-
         }
 
         return [];
-
     }
 
-    function calculateScore(query, card) {
+    function getScore(query, card) {
 
-        const q = normalize(query);
-
-        const qCompact = compact(query);
-
-        const toolName = getToolName(card);
-
-        const toolCompact = compact(toolName);
-
-        const toolAliases =
-            getAliases(toolName);
+        const q = clean(query);
+        const name = getName(card);
+        const list = getMatchingAliases(name);
 
         let score = 0;
 
-        if (!q) {
-            return 0;
-        }
+        if (!q) return 0;
 
-        /* Exact tool name */
-        if (q === toolName) {
+        /* Exact name */
+        if (q === name) {
             score += 1000;
         }
 
-        /* Exact compact match */
-        if (qCompact === toolCompact) {
-            score += 950;
-        }
-
-        /* Tool starts with search */
-        if (toolName.startsWith(q)) {
+        /* Name starts with search */
+        if (name.startsWith(q)) {
             score += 800;
         }
 
-        /* Tool contains search */
-        if (toolName.includes(q)) {
-            score += 650;
-        }
-
-        /* Compact version contains search */
-        if (toolCompact.includes(qCompact)) {
+        /* Name contains search */
+        if (name.includes(q)) {
             score += 600;
         }
 
         /* Alias matching */
-        toolAliases.forEach(function (alias) {
+        list.forEach(function (alias) {
 
-            const a = normalize(alias);
-            const ac = compact(alias);
+            const a = clean(alias);
 
             if (q === a) {
                 score += 900;
-            }
-
-            if (qCompact === ac) {
-                score += 850;
             }
 
             if (a.startsWith(q)) {
@@ -447,136 +331,69 @@ const toolsContainer = cards.length
                 score += 500;
             }
 
+            /* Typo matching */
+            if (q.length >= 3 && a.length >= 3) {
+
+                const d = distance(q, a);
+                const max = Math.max(q.length, a.length);
+                const similarity = 1 - d / max;
+
+                if (similarity >= 0.85) {
+                    score += 450;
+                } else if (similarity >= 0.75) {
+                    score += 300;
+                }
+            }
         });
 
-        /*
-          Individual words check.
-          Example:
-          "body mass calculator"
-          → BMI Calculator
-        */
-        const words = q.split(" ");
+        /* Word-by-word matching */
+        q.split(" ").forEach(function (word) {
 
-        words.forEach(function (word) {
+            if (word.length < 2) return;
 
-            if (word.length < 2) {
-                return;
-            }
-
-            if (toolName.includes(word)) {
+            if (name.includes(word)) {
                 score += 150;
             }
 
-            toolAliases.forEach(function (alias) {
+            list.forEach(function (alias) {
 
-                if (
-                    normalize(alias).includes(word)
-                ) {
-
+                if (clean(alias).includes(word)) {
                     score += 120;
-
                 }
 
             });
-
-        });
-
-        /*
-          Typo / fuzzy matching.
-        */
-        const possibleMatches = [
-            toolName,
-            ...toolAliases
-        ];
-
-        possibleMatches.forEach(function (item) {
-
-            const cleanItem =
-                compact(item);
-
-            if (
-                qCompact.length >= 3 &&
-                cleanItem.length >= 3
-            ) {
-
-                const distance =
-                    levenshtein(
-                        qCompact,
-                        cleanItem
-                    );
-
-                const maxLength =
-                    Math.max(
-                        qCompact.length,
-                        cleanItem.length
-                    );
-
-                const similarity =
-                    1 -
-                    (distance / maxLength);
-
-                if (similarity >= 0.90) {
-                    score += 450;
-                }
-
-                else if (similarity >= 0.80) {
-                    score += 300;
-                }
-
-                else if (similarity >= 0.70) {
-                    score += 180;
-                }
-
-            }
 
         });
 
         return score;
-
     }
 
-    function searchTools(query) {
+    function performSearch() {
 
-        const cleanQuery =
-            normalize(query);
+        const query = clean(searchBox.value);
 
-        /*
-          Search empty hone par original order.
-        */
-        if (!cleanQuery) {
+        /* Search empty → original order */
+        if (!query) {
 
             originalOrder.forEach(function (card) {
-
-                toolsContainer.appendChild(card);
-
+                parent.appendChild(card);
             });
 
             return;
-
         }
 
         const results = originalOrder
             .map(function (card, index) {
 
                 return {
-
                     card: card,
-
-                    score:
-                        calculateScore(
-                            cleanQuery,
-                            card
-                        ),
-
-                    originalIndex: index
-
+                    score: getScore(query, card),
+                    index: index
                 };
 
             })
             .filter(function (item) {
-
                 return item.score > 0;
-
             })
             .sort(function (a, b) {
 
@@ -584,61 +401,32 @@ const toolsContainer = cards.length
                     return b.score - a.score;
                 }
 
-                return (
-                    a.originalIndex -
-                    b.originalIndex
-                );
-
+                return a.index - b.index;
             });
 
-        /*
-          Matching cards ko top par le aao.
-        */
+        /* Matching results first */
         results.forEach(function (item) {
-
-            toolsContainer.appendChild(
-                item.card
-            );
-
+            parent.appendChild(item.card);
         });
 
-        /*
-          Non-matching cards ko neeche rakho.
-        */
+        /* Remaining cards after results */
         originalOrder.forEach(function (card) {
 
-            if (
-                !results.some(
-                    function (item) {
-                        return item.card === card;
-                    }
-                )
-            ) {
+            const alreadyShown = results.some(function (item) {
+                return item.card === card;
+            });
 
-                toolsContainer.appendChild(card);
-
+            if (!alreadyShown) {
+                parent.appendChild(card);
             }
 
         });
-
     }
 
-    /*
-      User type karte hi search chalega.
-    */
-    searchBox.addEventListener(
-        "input",
-        function () {
-
-            searchTools(
-                searchBox.value
-            );
-
-        }
-    );
+    searchBox.addEventListener("input", performSearch);
 
 });
-</script>
+                         </script>
 
 </body>
   </html>
