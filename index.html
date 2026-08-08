@@ -158,5 +158,482 @@ SmartToolsHub360
 © 2026 SmartToolsHub360 | All Rights Reserved
 </footer>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchBox = document.getElementById("search");
+    const toolsContainer = document.querySelector(".tools");
+    const cards = Array.from(
+        toolsContainer.querySelectorAll(".card")
+    );
+
+    /* Original order save kar rahe hain */
+    const originalOrder = cards.slice();
+
+    /*
+      Common words / related words.
+      Inke through user alag-alag tarike se
+      same tool ko search kar sakta hai.
+    */
+    const aliases = {
+
+        "age calculator": [
+            "age",
+            "age calc",
+            "calculate age",
+            "dob",
+            "date of birth",
+            "birthday",
+            "birth date",
+            "how old",
+            "years old"
+        ],
+
+        "percentage calculator": [
+            "percentage",
+            "percent",
+            "%",
+            "percent calculator",
+            "percentage calc",
+            "percentage calculation",
+            "percent calculation",
+            "percentage finder",
+            "percent finder",
+            "increase percentage",
+            "decrease percentage",
+            "mercentage",
+            "percantage",
+            "percenatge"
+        ],
+
+        "bmi calculator": [
+            "bmi",
+            "body mass",
+            "body mass index",
+            "weight",
+            "weight calculator",
+            "height weight",
+            "body weight",
+            "health calculator"
+        ],
+
+        "emi calculator": [
+            "emi",
+            "emi calc",
+            "loan",
+            "loan calculator",
+            "loan emi",
+            "monthly emi",
+            "monthly payment",
+            "installment",
+            "installment calculator",
+            "home loan",
+            "car loan",
+            "interest loan"
+        ],
+
+        "gst calculator": [
+            "gst",
+            "gst calc",
+            "tax",
+            "tax calculator",
+            "goods and services tax",
+            "gst tax",
+            "gst calculation",
+            "add gst",
+            "remove gst"
+        ],
+
+        "unit converter": [
+            "unit",
+            "units",
+            "convert",
+            "converter",
+            "conversion",
+            "measurement",
+            "measure",
+            "length",
+            "weight conversion",
+            "temperature conversion",
+            "distance conversion",
+            "unit conversion"
+        ],
+
+        "password generator": [
+            "password",
+            "password generator",
+            "generate password",
+            "strong password",
+            "secure password",
+            "random password",
+            "password maker",
+            "pass",
+            "pwd",
+            "passwrod",
+            "pasword",
+            "password gen"
+        ]
+    };
+
+    function normalize(text) {
+
+        return text
+            .toLowerCase()
+            .replace(/[^a-z0-9%]+/g, " ")
+            .replace(/\s+/g, " ")
+            .trim();
+
+    }
+
+    function compact(text) {
+
+        return normalize(text)
+            .replace(/\s/g, "");
+
+    }
+
+    /*
+      Typo checking.
+      Example:
+      percentage → percantage
+      password → passwrod
+    */
+    function levenshtein(a, b) {
+
+        const matrix = [];
+
+        for (let i = 0; i <= b.length; i++) {
+            matrix[i] = [i];
+        }
+
+        for (let j = 0; j <= a.length; j++) {
+            matrix[0][j] = j;
+        }
+
+        for (let i = 1; i <= b.length; i++) {
+
+            for (let j = 1; j <= a.length; j++) {
+
+                if (b.charAt(i - 1) === a.charAt(j - 1)) {
+
+                    matrix[i][j] =
+                        matrix[i - 1][j - 1];
+
+                } else {
+
+                    matrix[i][j] = Math.min(
+
+                        matrix[i - 1][j] + 1,
+
+                        matrix[i][j - 1] + 1,
+
+                        matrix[i - 1][j - 1] + 1
+
+                    );
+
+                }
+
+            }
+
+        }
+
+        return matrix[b.length][a.length];
+
+    }
+
+    function getToolName(card) {
+
+        const heading = card.querySelector("h2");
+
+        if (heading) {
+            return normalize(heading.textContent);
+        }
+
+        return normalize(card.textContent);
+
+    }
+
+    function getAliases(toolName) {
+
+        for (const key in aliases) {
+
+            if (
+                toolName.includes(key) ||
+                key.includes(toolName)
+            ) {
+
+                return aliases[key];
+
+            }
+
+        }
+
+        return [];
+
+    }
+
+    function calculateScore(query, card) {
+
+        const q = normalize(query);
+
+        const qCompact = compact(query);
+
+        const toolName = getToolName(card);
+
+        const toolCompact = compact(toolName);
+
+        const toolAliases =
+            getAliases(toolName);
+
+        let score = 0;
+
+        if (!q) {
+            return 0;
+        }
+
+        /* Exact tool name */
+        if (q === toolName) {
+            score += 1000;
+        }
+
+        /* Exact compact match */
+        if (qCompact === toolCompact) {
+            score += 950;
+        }
+
+        /* Tool starts with search */
+        if (toolName.startsWith(q)) {
+            score += 800;
+        }
+
+        /* Tool contains search */
+        if (toolName.includes(q)) {
+            score += 650;
+        }
+
+        /* Compact version contains search */
+        if (toolCompact.includes(qCompact)) {
+            score += 600;
+        }
+
+        /* Alias matching */
+        toolAliases.forEach(function (alias) {
+
+            const a = normalize(alias);
+            const ac = compact(alias);
+
+            if (q === a) {
+                score += 900;
+            }
+
+            if (qCompact === ac) {
+                score += 850;
+            }
+
+            if (a.startsWith(q)) {
+                score += 700;
+            }
+
+            if (a.includes(q)) {
+                score += 550;
+            }
+
+            if (q.includes(a)) {
+                score += 500;
+            }
+
+        });
+
+        /*
+          Individual words check.
+          Example:
+          "body mass calculator"
+          → BMI Calculator
+        */
+        const words = q.split(" ");
+
+        words.forEach(function (word) {
+
+            if (word.length < 2) {
+                return;
+            }
+
+            if (toolName.includes(word)) {
+                score += 150;
+            }
+
+            toolAliases.forEach(function (alias) {
+
+                if (
+                    normalize(alias).includes(word)
+                ) {
+
+                    score += 120;
+
+                }
+
+            });
+
+        });
+
+        /*
+          Typo / fuzzy matching.
+        */
+        const possibleMatches = [
+            toolName,
+            ...toolAliases
+        ];
+
+        possibleMatches.forEach(function (item) {
+
+            const cleanItem =
+                compact(item);
+
+            if (
+                qCompact.length >= 3 &&
+                cleanItem.length >= 3
+            ) {
+
+                const distance =
+                    levenshtein(
+                        qCompact,
+                        cleanItem
+                    );
+
+                const maxLength =
+                    Math.max(
+                        qCompact.length,
+                        cleanItem.length
+                    );
+
+                const similarity =
+                    1 -
+                    (distance / maxLength);
+
+                if (similarity >= 0.90) {
+                    score += 450;
+                }
+
+                else if (similarity >= 0.80) {
+                    score += 300;
+                }
+
+                else if (similarity >= 0.70) {
+                    score += 180;
+                }
+
+            }
+
+        });
+
+        return score;
+
+    }
+
+    function searchTools(query) {
+
+        const cleanQuery =
+            normalize(query);
+
+        /*
+          Search empty hone par original order.
+        */
+        if (!cleanQuery) {
+
+            originalOrder.forEach(function (card) {
+
+                toolsContainer.appendChild(card);
+
+            });
+
+            return;
+
+        }
+
+        const results = originalOrder
+            .map(function (card, index) {
+
+                return {
+
+                    card: card,
+
+                    score:
+                        calculateScore(
+                            cleanQuery,
+                            card
+                        ),
+
+                    originalIndex: index
+
+                };
+
+            })
+            .filter(function (item) {
+
+                return item.score > 0;
+
+            })
+            .sort(function (a, b) {
+
+                if (b.score !== a.score) {
+                    return b.score - a.score;
+                }
+
+                return (
+                    a.originalIndex -
+                    b.originalIndex
+                );
+
+            });
+
+        /*
+          Matching cards ko top par le aao.
+        */
+        results.forEach(function (item) {
+
+            toolsContainer.appendChild(
+                item.card
+            );
+
+        });
+
+        /*
+          Non-matching cards ko neeche rakho.
+        */
+        originalOrder.forEach(function (card) {
+
+            if (
+                !results.some(
+                    function (item) {
+                        return item.card === card;
+                    }
+                )
+            ) {
+
+                toolsContainer.appendChild(card);
+
+            }
+
+        });
+
+    }
+
+    /*
+      User type karte hi search chalega.
+    */
+    searchBox.addEventListener(
+        "input",
+        function () {
+
+            searchTools(
+                searchBox.value
+            );
+
+        }
+    );
+
+});
+</script>
+
 </body>
   </html>
