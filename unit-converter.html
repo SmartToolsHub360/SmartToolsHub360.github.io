@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Unit Converter - SmartToolsHub360</title>
 
 <meta name="description"
-content="Free Unit Converter by SmartToolsHub360. Convert Length, Weight, Temperature, Area, Volume, Speed, Time and Data Storage instantly.">
-
-<meta name="keywords"
-content="Unit Converter, Length Converter, Weight Converter, Temperature Converter, SmartToolsHub360">
+content="Free Unit Converter by SmartToolsHub360. Convert length, weight, temperature, area, volume, speed, time and data storage units easily.">
 
 <style>
 
@@ -28,19 +28,19 @@ color:#222;
 
 header{
 background:#0d6efd;
-color:#fff;
+color:white;
 text-align:center;
 padding:18px;
-font-size:34px;
+font-size:30px;
 font-weight:bold;
-box-shadow:0 3px 10px rgba(0,0,0,.2);
+box-shadow:0 3px 10px rgba(0,0,0,.18);
 }
 
 .container{
 max-width:900px;
 margin:30px auto;
-background:#fff;
-border-radius:20px;
+background:white;
+border-radius:22px;
 padding:30px;
 box-shadow:0 8px 25px rgba(0,0,0,.12);
 }
@@ -52,12 +52,12 @@ font-size:42px;
 margin-bottom:10px;
 }
 
-p{
+.subtitle{
 text-align:center;
-font-size:20px;
+font-size:19px;
 color:#666;
-margin-bottom:30px;
 line-height:1.6;
+margin-bottom:30px;
 }
 
 .card{
@@ -70,13 +70,13 @@ margin-bottom:25px;
 
 .card h2{
 color:#0d6efd;
-font-size:30px;
+font-size:27px;
 margin-bottom:20px;
 }
 
 label{
 display:block;
-font-size:20px;
+font-size:18px;
 font-weight:bold;
 margin:15px 0 8px;
 }
@@ -84,18 +84,20 @@ margin:15px 0 8px;
 input,
 select{
 width:100%;
-padding:16px;
-font-size:20px;
+padding:15px;
+font-size:18px;
 border:2px solid #0d6efd;
-border-radius:14px;
+border-radius:13px;
 outline:none;
-margin-bottom:18px;
 background:#fff;
+color:#222;
+margin-bottom:15px;
 }
 
 input:focus,
 select:focus{
-border-color:#0056d6;
+border-color:#084298;
+box-shadow:0 0 5px rgba(13,110,253,.18);
 }
 
 .row{
@@ -114,239 +116,17 @@ padding:16px;
 background:#0d6efd;
 color:#fff;
 border:none;
-border-radius:14px;
-font-size:22px;
+border-radius:13px;
+font-size:20px;
 font-weight:bold;
 cursor:pointer;
-transition:.3s;
 margin-top:10px;
+transition:.2s;
 }
 
 .btn:hover{
-background:#0b5ed7;
+background:#084298;
 }
-
-.result-card{
-background:#eef6ff;
-border-left:6px solid #0d6efd;
-border-radius:16px;
-padding:25px;
-margin-bottom:25px;
-}
-
-.result-card h2{
-color:#0d6efd;
-margin-bottom:18px;
-}
-
-.result-value{
-font-size:34px;
-font-weight:bold;
-text-align:center;
-color:#0d6efd;
-margin:20px 0;
-word-break:break-word;
-}
-
-.result-box{
-font-size:20px;
-line-height:2;
-color:#333;
-}
-
-.result-box span{
-float:right;
-font-weight:bold;
-color:#0d6efd;
-}
-
-.swap-btn{
-width:100%;
-padding:14px;
-background:#6c757d;
-color:#fff;
-border:none;
-border-radius:12px;
-font-size:19px;
-font-weight:bold;
-cursor:pointer;
-margin:5px 0 10px;
-}
-
-.swap-btn:hover{
-background:#5c636a;
-}
-
-.btn-group{
-display:flex;
-gap:15px;
-margin-top:20px;
-}
-
-.copy-btn,
-.clear-btn{
-flex:1;
-padding:15px;
-font-size:18px;
-font-weight:bold;
-border:none;
-border-radius:12px;
-cursor:pointer;
-transition:.3s;
-}
-
-.copy-btn{
-background:#198754;
-color:#fff;
-}
-
-.copy-btn:hover{
-background:#157347;
-}
-
-.clear-btn{
-background:#dc3545;
-color:#fff;
-}
-
-.clear-btn:hover{
-background:#bb2d3b;
-}
-
-.details{
-font-size:18px;
-line-height:1.8;
-color:#444;
-}
-
-ul{
-padding-left:22px;
-}
-
-li{
-font-size:17px;
-line-height:1.8;
-margin-bottom:10px;
-color:#444;
-}
-
-.formula{
-background:#fff;
-border:1px solid #dbe8ff;
-border-radius:12px;
-padding:15px;
-margin-top:15px;
-font-size:17px;
-text-align:center;
-color:#333;
-}
-
-@media(max-width:768px){
-
-.row{
-flex-direction:column;
-align-items:stretch;
-}
-
-.btn-group{
-flex-direction:column;
-}
-
-header{
-font-size:26px;
-}
-
-h1{
-font-size:34px;
-}
-
-.card h2,
-.result-card h2{
-font-size:24px;
-}
-
-.container{
-margin:15px;
-padding:20px;
-}
-
-.btn,
-.swap-btn,
-.copy-btn,
-.clear-btn{
-font-size:18px;
-}
-
-.result-value{
-font-size:28px;
-}
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<header>
-🔄 SmartToolsHub360
-</header>
-
-<div class="container">
-
-<h1>Unit Converter</h1>
-
-<p>
-Convert Length, Weight, Temperature, Area, Volume,
-Speed, Time and Data Storage quickly and accurately.
-</p>
-
-<div class="card">
-
-<h2>🔢 Convert Units</h2>
-
-<label for="category">
-Select Category
-</label>
-
-<select id="category">
-
-<option value="length">
-Length
-</option>
-
-<option value="weight">
-Weight
-</option>
-
-<option value="temperature">
-Temperature
-</option>
-
-<option value="area">
-Area
-</option>
-
-<option value="volume">
-Volume
-</option>
-
-<option value="speed">
-Speed
-</option>
-
-<option value="time">
-Time
-</option>
-
-<option value="data">
-Data Storage
-</option>
-
-</select>
-
-/* Unit Converter Controls */
 
 .swap-btn{
 width:100%;
@@ -354,12 +134,11 @@ padding:14px;
 background:#fff;
 color:#0d6efd;
 border:2px solid #0d6efd;
-border-radius:14px;
-font-size:20px;
+border-radius:13px;
+font-size:17px;
 font-weight:bold;
 cursor:pointer;
-transition:.3s;
-margin:5px 0 15px;
+margin-bottom:15px;
 }
 
 .swap-btn:hover{
@@ -370,51 +149,63 @@ background:#eaf3ff;
 background:#eef6ff;
 border-left:6px solid #0d6efd;
 border-radius:16px;
-padding:25px;
+padding:22px;
 margin-bottom:25px;
 }
 
 .result-card h2{
 color:#0d6efd;
-margin-bottom:18px;
+font-size:27px;
+margin-bottom:15px;
 }
 
 .result-value{
+text-align:center;
 font-size:32px;
 font-weight:bold;
-text-align:center;
 color:#0d6efd;
 padding:15px;
 word-break:break-word;
 }
 
+.conversion-text{
+background:#fff;
+border:1px solid #dbe8ff;
+border-radius:10px;
+padding:14px;
+text-align:center;
+font-size:17px;
+color:#444;
+margin-top:10px;
+}
+
 .formula{
 background:#fff;
 border:1px solid #dbe8ff;
-border-radius:12px;
-padding:15px;
-margin-top:15px;
-font-size:18px;
+border-radius:10px;
+padding:14px;
+text-align:center;
+font-size:17px;
+color:#333;
+margin-top:12px;
 line-height:1.6;
-color:#444;
 }
 
 .btn-group{
 display:flex;
-gap:15px;
-margin-top:20px;
+gap:12px;
+margin-top:18px;
 }
 
 .copy-btn,
 .clear-btn{
 flex:1;
-padding:15px;
-font-size:18px;
-font-weight:bold;
+padding:14px;
 border:none;
 border-radius:12px;
+font-size:17px;
+font-weight:bold;
 cursor:pointer;
-transition:.3s;
 }
 
 .copy-btn{
@@ -436,9 +227,15 @@ background:#bb2d3b;
 }
 
 .details{
-font-size:18px;
+font-size:17px;
 line-height:1.8;
 color:#444;
+}
+
+.details p{
+text-align:left;
+font-size:17px;
+margin-bottom:12px;
 }
 
 ul{
@@ -448,27 +245,38 @@ padding-left:22px;
 li{
 font-size:17px;
 line-height:1.8;
-margin-bottom:10px;
+margin-bottom:8px;
 color:#444;
+}
+
+.faq-item{
+margin-bottom:18px;
+}
+
+.faq-question{
+font-weight:bold;
+color:#0d6efd;
+font-size:18px;
+margin-bottom:5px;
 }
 
 @media(max-width:768px){
 
-.row{
-flex-direction:column;
-align-items:stretch;
-}
-
-.btn-group{
-flex-direction:column;
-}
-
-header{
-font-size:26px;
+.container{
+margin:15px;
+padding:20px;
 }
 
 h1{
 font-size:34px;
+}
+
+.subtitle{
+font-size:17px;
+}
+
+.card{
+padding:20px;
 }
 
 .card h2,
@@ -476,20 +284,25 @@ font-size:34px;
 font-size:24px;
 }
 
-.container{
-margin:15px;
-padding:20px;
+.row{
+flex-direction:column;
+gap:0;
 }
 
-.btn,
-.swap-btn,
-.copy-btn,
-.clear-btn{
-font-size:18px;
+.col{
+width:100%;
+}
+
+.btn-group{
+flex-direction:column;
 }
 
 .result-value{
-font-size:26px;
+font-size:27px;
+}
+
+header{
+font-size:25px;
 }
 
 }
@@ -508,14 +321,14 @@ font-size:26px;
 
 <h1>Unit Converter</h1>
 
-<p>
+<div class="subtitle">
 Convert Length, Weight, Temperature, Area, Volume,
 Speed, Time and Data Storage quickly and accurately.
-</p>
+</div>
 
 <div class="card">
 
-<h2>🔧 Conversion Details</h2>
+<h2>🔢 Convert Units</h2>
 
 <label for="category">
 Select Category
@@ -564,7 +377,8 @@ Enter Value
 <input
 type="number"
 id="value"
-placeholder="Enter value">
+placeholder="Enter value"
+step="any">
 
 <div class="row">
 
@@ -582,8 +396,9 @@ From Unit
 <div class="col">
 
 <button
+type="button"
 class="swap-btn"
-onclick="swapUnits()">
+id="swapBtn">
 
 ⇄ Swap Units
 
@@ -605,8 +420,9 @@ To Unit
 </div>
 
 <button
+type="button"
 class="btn"
-onclick="convertUnit()">
+id="convertBtn">
 
 Convert
 
@@ -626,31 +442,40 @@ id="resultValue">
 
 </div>
 
-<div class="formula">
+<div
+class="conversion-text"
+id="conversionText">
 
-<b>Conversion:</b>
-
-<span id="conversionText">
 Enter a value and select your units.
-</span>
+
+</div>
+
+<div
+class="formula"
+id="formula">
+
+<b>Formula:</b>
+Select units to see the conversion formula.
 
 </div>
 
 <div class="btn-group">
 
 <button
+type="button"
 class="copy-btn"
-onclick="copyResult()">
+id="copyBtn">
 
-Copy Result
+📋 Copy Result
 
 </button>
 
 <button
+type="button"
 class="clear-btn"
-onclick="clearAll()">
+id="clearBtn">
 
-Clear All
+🗑️ Clear All
 
 </button>
 
@@ -664,15 +489,26 @@ Clear All
 
 <ul>
 
-<li>Select the correct category before choosing your units.</li>
+<li>
+Select the correct category before choosing your units.
+</li>
 
-<li>Use the ⇄ Swap Units button to quickly reverse the conversion.</li>
+<li>
+Use the ⇄ Swap Units button to quickly reverse the conversion.
+</li>
 
-<li>For temperature, the converter supports Celsius, Fahrenheit and Kelvin.</li>
+<li>
+For temperature, Celsius, Fahrenheit and Kelvin are supported.
+</li>
 
-<li>For digital storage, choose the correct unit such as KB, MB, GB or TB.</li>
+<li>
+For data storage, choose the correct unit such as
+Byte, KB, MB, GB or TB.
+</li>
 
-<li>Check the selected From Unit and To Unit before converting.</li>
+<li>
+Press Enter after entering a value to convert it quickly.
+</li>
 
 </ul>
 
@@ -682,14 +518,24 @@ Clear All
 
 <h2>📘 Unit Information</h2>
 
-<p class="details">
+<div class="details">
 
+<p>
 A unit converter changes a measurement from one unit
 to another while keeping the same physical quantity.
-This tool supports common units for length, weight,
-temperature, area, volume, speed, time and data storage.
-
 </p>
+
+<p>
+This converter supports common units for length, weight,
+temperature, area, volume, speed, time and data storage.
+</p>
+
+<p>
+The conversion is performed automatically using the
+appropriate conversion factor or temperature formula.
+</p>
+
+</div>
 
 </div>
 
@@ -697,49 +543,68 @@ temperature, area, volume, speed, time and data storage.
 
 <h2>❓ Frequently Asked Questions</h2>
 
+<div class="faq-item">
+
+<div class="faq-question">
+1. What can this Unit Converter convert?
+</div>
+
 <div class="details">
-
-<p>
-
-<b>1. What can this Unit Converter convert?</b><br>
-
 It can convert Length, Weight, Temperature, Area,
 Volume, Speed, Time and Data Storage units.
+</div>
 
-</p>
+</div>
 
-<br>
+<div class="faq-item">
 
-<p>
+<div class="faq-question">
+2. Can I swap the units?
+</div>
 
-<b>2. Can I swap the units?</b><br>
-
-Yes. Press the <b>⇄ Swap Units</b> button to exchange
+<div class="details">
+Yes. Press the ⇄ Swap Units button to exchange
 the From Unit and To Unit.
+</div>
 
-</p>
+</div>
 
-<br>
+<div class="faq-item">
 
-<p>
+<div class="faq-question">
+3. Can I convert temperature?
+</div>
 
-<b>3. Can I convert temperature?</b><br>
-
+<div class="details">
 Yes. Celsius, Fahrenheit and Kelvin conversions
 are supported.
+</div>
 
-</p>
+</div>
 
-<br>
+<div class="faq-item">
 
-<p>
+<div class="faq-question">
+4. Can I copy the result?
+</div>
 
-<b>4. Can I copy the result?</b><br>
+<div class="details">
+Yes. After conversion, press Copy Result to copy
+the complete conversion to your clipboard.
+</div>
 
-Yes. After conversion, press <b>Copy Result</b> to
-copy the result to your clipboard.
+</div>
 
-</p>
+<div class="faq-item">
+
+<div class="faq-question">
+5. Does the converter work on mobile phones?
+</div>
+
+<div class="details">
+Yes. The layout is responsive and designed to work
+on mobile, tablet and desktop screens.
+</div>
 
 </div>
 
@@ -749,196 +614,332 @@ copy the result to your clipboard.
 
 <script>
 
-const category=
+"use strict";
+
+const category =
 document.getElementById("category");
 
-const fromUnit=
-document.getElementById("fromUnit");
-
-const toUnit=
-document.getElementById("toUnit");
-
-const valueInput=
+const valueInput =
 document.getElementById("value");
 
-const resultValue=
+const fromUnit =
+document.getElementById("fromUnit");
+
+const toUnit =
+document.getElementById("toUnit");
+
+const convertBtn =
+document.getElementById("convertBtn");
+
+const swapBtn =
+document.getElementById("swapBtn");
+
+const copyBtn =
+document.getElementById("copyBtn");
+
+const clearBtn =
+document.getElementById("clearBtn");
+
+const resultValue =
 document.getElementById("resultValue");
 
-const conversionText=
+const conversionText =
 document.getElementById("conversionText");
 
-let lastResult="";
+const formula =
+document.getElementById("formula");
 
-const units={
+let lastResult = "";
 
-length:{
-"Meter":1,
-"Kilometer":1000,
-"Centimeter":0.01,
-"Millimeter":0.001,
-"Mile":1609.344,
-"Yard":0.9144,
-"Foot":0.3048,
-"Inch":0.0254
+const unitData = {
+
+length: {
+
+"Meter": 1,
+
+"Kilometer": 1000,
+
+"Centimeter": 0.01,
+
+"Millimeter": 0.001,
+
+"Mile": 1609.344,
+
+"Yard": 0.9144,
+
+"Foot": 0.3048,
+
+"Inch": 0.0254
+
 },
 
-weight:{
-"Kilogram":1,
-"Gram":0.001,
-"Milligram":0.000001,
-"Pound":0.45359237,
-"Ounce":0.0283495,
-"Ton":1000
+weight: {
+
+"Kilogram": 1,
+
+"Gram": 0.001,
+
+"Milligram": 0.000001,
+
+"Pound": 0.45359237,
+
+"Ounce": 0.028349523125,
+
+"Ton": 1000
+
 },
 
-temperature:{
-"Celsius":"C",
-"Fahrenheit":"F",
-"Kelvin":"K"
+temperature: {
+
+"Celsius": "C",
+
+"Fahrenheit": "F",
+
+"Kelvin": "K"
+
 },
 
-area:{
-"Square Meter":1,
-"Square Kilometer":1000000,
-"Square Centimeter":0.0001,
-"Square Foot":0.092903,
-"Square Inch":0.00064516,
-"Acre":4046.856422
+area: {
+
+"Square Meter": 1,
+
+"Square Kilometer": 1000000,
+
+"Square Centimeter": 0.0001,
+
+"Square Millimeter": 0.000001,
+
+"Square Foot": 0.09290304,
+
+"Square Inch": 0.00064516,
+
+"Acre": 4046.8564224,
+
+"Hectare": 10000
+
 },
 
-volume:{
-"Liter":1,
-"Milliliter":0.001,
-"Cubic Meter":1000,
-"Cubic Centimeter":0.001,
-"Gallon":3.785411784,
-"Cubic Foot":28.3168466
+volume: {
+
+"Liter": 1,
+
+"Milliliter": 0.001,
+
+"Cubic Meter": 1000,
+
+"Cubic Centimeter": 0.001,
+
+"Gallon": 3.785411784,
+
+"Quart": 0.946352946,
+
+"Pint": 0.473176473,
+
+"Cup": 0.2365882365
+
 },
 
-speed:{
-"Meter/Second":1,
-"Kilometer/Hour":0.277777778,
-"Mile/Hour":0.44704,
-"Foot/Second":0.3048,
-"Knot":0.514444444
+speed: {
+
+"Meter/Second": 1,
+
+"Kilometer/Hour": 0.2777777778,
+
+"Mile/Hour": 0.44704,
+
+"Foot/Second": 0.3048,
+
+"Knot": 0.5144444444
+
 },
 
-time:{
-"Second":1,
-"Minute":60,
-"Hour":3600,
-"Day":86400,
-"Week":604800,
-"Year":31536000
+time: {
+
+"Second": 1,
+
+"Millisecond": 0.001,
+
+"Minute": 60,
+
+"Hour": 3600,
+
+"Day": 86400,
+
+"Week": 604800,
+
+"Year": 31536000
+
 },
 
-data:{
-"Byte":1,
-"Kilobyte":1024,
-"Megabyte":1048576,
-"Gigabyte":1073741824,
-"Terabyte":1099511627776
+data: {
+
+"Byte": 1,
+
+"Kilobyte": 1024,
+
+"Megabyte": 1048576,
+
+"Gigabyte": 1073741824,
+
+"Terabyte": 1099511627776
+
 }
 
 };
 
-function loadUnits(){
+function loadUnits() {
 
-fromUnit.innerHTML="";
-toUnit.innerHTML="";
+fromUnit.innerHTML = "";
 
-const selected=
-units[category.value];
+toUnit.innerHTML = "";
 
-Object.keys(selected).forEach(unit=>{
+const selectedCategory =
+unitData[category.value];
 
-const option1=
+Object.keys(selectedCategory).forEach(
+function(unit) {
+
+const optionFrom =
 document.createElement("option");
 
-option1.value=unit;
-option1.textContent=unit;
+optionFrom.value = unit;
 
-fromUnit.appendChild(option1);
+optionFrom.textContent = unit;
 
-const option2=
+fromUnit.appendChild(optionFrom);
+
+const optionTo =
 document.createElement("option");
 
-option2.value=unit;
-option2.textContent=unit;
+optionTo.value = unit;
 
-toUnit.appendChild(option2);
+optionTo.textContent = unit;
 
-});
-
-if(toUnit.options.length>1){
-
-toUnit.selectedIndex=1;
+toUnit.appendChild(optionTo);
 
 }
-
-}
-
-category.addEventListener(
-"change",
-loadUnits
 );
+
+if(toUnit.options.length > 1) {
+
+toUnit.selectedIndex = 1;
+
+}
+
+updateFormula();
+
+}
 
 loadUnits();
 
-function convertUnit(){
+category.addEventListener(
+"change",
+function() {
 
-const value=
-parseFloat(valueInput.value);
+loadUnits();
 
-if(
-isNaN(value)
-){
+}
+);
 
-alert("Please enter a valid value.");
+function updateFormula(){
+
+const categoryName =
+category.value;
+
+const from =
+fromUnit.value;
+
+const to =
+toUnit.value;
+
+if(!from || !to){
+
+formula.innerHTML =
+"<b>Formula:</b> Select units to see the conversion formula.";
 
 return;
 
 }
 
-const categoryName=
-category.value;
+if(from === to){
 
-const from=
-fromUnit.value;
+formula.innerHTML =
+"<b>Formula:</b> Same unit — no conversion needed.";
 
-const to=
-toUnit.value;
-
-let result;
-
-if(categoryName==="temperature"){
-
-result=
-convertTemperature(value,from,to);
-
-}else{
-
-const baseValue=
-value*units[categoryName][from];
-
-result=
-baseValue/units[categoryName][to];
+return;
 
 }
 
-let rounded=
-formatResult(result);
+if(categoryName === "temperature"){
 
-resultValue.textContent=
-rounded+" "+to;
+if(from === "Celsius" && to === "Fahrenheit"){
 
-conversionText.textContent=
-`${value} ${from} = ${rounded} ${to}`;
-
-lastResult=
-`${value} ${from} = ${rounded} ${to}`;
+formula.innerHTML =
+"<b>Formula:</b> °F = (°C × 9/5) + 32";
 
 }
+
+else if(from === "Fahrenheit" && to === "Celsius"){
+
+formula.innerHTML =
+"<b>Formula:</b> °C = (°F − 32) × 5/9";
+
+}
+
+else if(from === "Celsius" && to === "Kelvin"){
+
+formula.innerHTML =
+"<b>Formula:</b> K = °C + 273.15";
+
+}
+
+else if(from === "Kelvin" && to === "Celsius"){
+
+formula.innerHTML =
+"<b>Formula:</b> °C = K − 273.15";
+
+}
+
+else if(from === "Fahrenheit" && to === "Kelvin"){
+
+formula.innerHTML =
+"<b>Formula:</b> K = (°F − 32) × 5/9 + 273.15";
+
+}
+
+else if(from === "Kelvin" && to === "Fahrenheit"){
+
+formula.innerHTML =
+"<b>Formula:</b> °F = (K − 273.15) × 9/5 + 32";
+
+}
+
+return;
+
+}
+
+formula.innerHTML =
+"<b>Formula:</b> Convert to the base unit, then convert to the selected target unit.";
+
+}
+
+fromUnit.addEventListener(
+"change",
+function(){
+
+updateFormula();
+
+}
+);
+
+toUnit.addEventListener(
+"change",
+function(){
+
+updateFormula();
+
+}
+);
 
 function convertTemperature(
 value,
@@ -946,7 +947,7 @@ from,
 to
 ){
 
-if(from===to){
+if(from === to){
 
 return value;
 
@@ -954,37 +955,43 @@ return value;
 
 let celsius;
 
-if(from==="Celsius"){
+if(from === "Celsius"){
 
-celsius=value;
-
-}else if(from==="Fahrenheit"){
-
-celsius=
-(value-32)*5/9;
-
-}else if(from==="Kelvin"){
-
-celsius=
-value-273.15;
+celsius = value;
 
 }
 
-if(to==="Celsius"){
+else if(from === "Fahrenheit"){
+
+celsius =
+(value - 32) * 5 / 9;
+
+}
+
+else if(from === "Kelvin"){
+
+celsius =
+value - 273.15;
+
+}
+
+if(to === "Celsius"){
 
 return celsius;
 
 }
 
-if(to==="Fahrenheit"){
+if(to === "Fahrenheit"){
 
-return (celsius*9/5)+32;
+return
+(celsius * 9 / 5) + 32;
 
 }
 
-if(to==="Kelvin"){
+if(to === "Kelvin"){
 
-return celsius+273.15;
+return
+celsius + 273.15;
 
 }
 
@@ -992,12 +999,20 @@ return value;
 
 }
 
-function formatResult(
-number
-){
+function formatResult(number){
+
+if(!Number.isFinite(number)){
+
+return "Invalid";
+
+}
 
 if(
-Math.abs(number)>=1000000000
+Math.abs(number) >= 1000000000 ||
+(
+Math.abs(number) > 0 &&
+Math.abs(number) < 0.000001
+)
 ){
 
 return number.toExponential(6);
@@ -1010,31 +1025,114 @@ number.toFixed(10)
 
 }
 
-function swapUnits(){
+function convertUnit(){
 
-const currentFrom=
+const value =
+parseFloat(valueInput.value);
+
+if(isNaN(value)){
+
+alert("Please enter a valid value.");
+
+valueInput.focus();
+
+return;
+
+}
+
+const categoryName =
+category.value;
+
+const from =
 fromUnit.value;
 
-const currentTo=
+const to =
 toUnit.value;
 
-fromUnit.value=
+let result;
+
+if(categoryName === "temperature"){
+
+result =
+convertTemperature(
+value,
+from,
+to
+);
+
+}
+
+else{
+
+const baseValue =
+value *
+unitData[categoryName][from];
+
+result =
+baseValue /
+unitData[categoryName][to];
+
+}
+
+const formatted =
+formatResult(result);
+
+resultValue.textContent =
+formatted + " " + to;
+
+conversionText.textContent =
+value + " " + from +
+" = " + formatted + " " + to;
+
+lastResult =
+value + " " + from +
+" = " + formatted + " " + to;
+
+updateFormula();
+
+}
+
+convertBtn.addEventListener(
+"click",
+function(){
+
+convertUnit();
+
+}
+);
+
+swapBtn.addEventListener(
+"click",
+function(){
+
+const currentFrom =
+fromUnit.value;
+
+const currentTo =
+toUnit.value;
+
+fromUnit.value =
 currentTo;
 
-toUnit.value=
+toUnit.value =
 currentFrom;
 
-if(valueInput.value!==""){
+updateFormula();
+
+if(valueInput.value !== ""){
 
 convertUnit();
 
 }
 
 }
+);
 
-function copyResult(){
+copyBtn.addEventListener(
+"click",
+function(){
 
-if(lastResult===""){
+if(lastResult === ""){
 
 alert("Please convert a value first.");
 
@@ -1049,50 +1147,95 @@ navigator.clipboard.writeText
 
 navigator.clipboard.writeText(
 lastResult
-).then(function(){
+)
+.then(function(){
 
 alert("✅ Result Copied!");
 
-}).catch(function(){
+})
+.catch(function(){
 
-alert("Unable to copy the result.");
+alert(
+"Unable to copy the result."
+);
 
 });
 
-}else{
+}
 
-alert("Copy is not supported on this browser.");
+else{
+
+const textArea =
+document.createElement("textarea");
+
+textArea.value =
+lastResult;
+
+document.body.appendChild(
+textArea
+);
+
+textArea.select();
+
+document.execCommand("copy");
+
+document.body.removeChild(
+textArea
+);
+
+alert("✅ Result Copied!");
 
 }
 
 }
+);
 
-function clearAll(){
+clearBtn.addEventListener(
+"click",
+function(){
 
-valueInput.value="";
+valueInput.value = "";
 
 loadUnits();
 
-resultValue.textContent="0";
+resultValue.textContent =
+"0";
 
-conversionText.textContent=
+conversionText.textContent =
 "Enter a value and select your units.";
 
-lastResult="";
+lastResult = "";
+
+updateFormula();
+
+valueInput.focus();
 
 }
+);
 
 valueInput.addEventListener(
-"keypress",
+"keydown",
 function(event){
 
-if(event.key==="Enter"){
+if(event.key === "Enter"){
+
+event.preventDefault();
 
 convertUnit();
 
 }
 
-});
+}
+);
+
+window.addEventListener(
+"load",
+function(){
+
+loadUnits();
+
+}
+);
 
 </script>
 
