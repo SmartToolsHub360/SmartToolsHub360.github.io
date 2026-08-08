@@ -162,9 +162,14 @@ SmartToolsHub360
 document.addEventListener("DOMContentLoaded", function () {
 
     const searchBox = document.getElementById("search");
-    const toolsContainer = document.querySelector(".tools");
-    const cards = Array.from(
-        toolsContainer.querySelectorAll(".card")
+
+const cards = Array.from(
+    document.querySelectorAll(".card")
+);
+
+const toolsContainer = cards.length
+    ? cards[0].parentElement
+    : null;
     );
 
     /* Original order save kar rahe hain */
